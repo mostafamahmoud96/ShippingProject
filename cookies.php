@@ -1,11 +1,11 @@
 <?php
-    if(isset($_COOKIE['login']))
+    if(isset($_COOKIE['loginCookie']))
     {
 
     }
     else
     {
-        header ('location: index.php');
+        // header ('location: index.php');
     }
     if(isset($_POST['login']))
     {

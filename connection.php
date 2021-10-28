@@ -1,5 +1,5 @@
 <?php
-
+require_once('cookies.php');
 $dsn = "mysql:dbname=shipping;dbhost=127.0.0.1;dbport=3306";
 
 define("dbuser","root");
@@ -13,3 +13,12 @@ catch(PDOException $e){
     die ("error couldnt connect". $e -> getMessage());
 }
 ?>
+<!-- <script>
+    $(".logout").click(function () {
+            $.post('cookies.php',{
+                cook: 'delete'
+            },function(){
+               window.location.replace("index.php");
+            });
+        })
+        </script> -->
