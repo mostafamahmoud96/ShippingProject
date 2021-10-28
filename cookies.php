@@ -5,22 +5,11 @@
     }
     else
     {
-        header ('location: login.php');
+        header ('location: index.php');
     }
     if(isset($_POST['login']))
     {
         setcookie('email');
         setcookie('password');
-        // setcookie('userRole');
     }
 ?>
-<!-- <script>
-    if(localStorage.getItem('remember')=='true')
-    {
-        
-    }
-    else
-    {
-        header ('location: login.php');
-    }
-</script> -->
