@@ -1,35 +1,35 @@
 <?php 
-session_start();
-require "connection.php"?>
+// session_start();
+// require "connection.php"?>
 <?php
-if ($_SERVER['REQUEST_METHOD'] == "POST"){
-        $adminUsername = $_POST['user_email'];
-        $adminPassword =  $_POST['user_password'];
-        $query= "SELECT * FROM `login` WHERE email= ? AND password= ? AND groupid !=0";
-        $stmt= $connect->prepare($query);
-        $stmt->execute(array($adminUsername , $hashedPass));
-        /*
-         ** $rowCount() -> boolen function return 1 if data in DB | 0 if data doesn't in DB
-        */
-        $count= $stmt->rowCount();
+// if ($_SERVER['REQUEST_METHOD'] == "POST"){
+//         $adminUsername = $_POST['user_email'];
+//         $adminPassword =  $_POST['user_password'];
+//         $query= "SELECT * FROM `login` WHERE email= ? AND password= ? AND groupid !=0";
+//         $stmt= $connect->prepare($query);
+//         $stmt->execute(array($adminUsername , $hashedPass));
+//         /*
+//          ** $rowCount() -> boolen function return 1 if data in DB | 0 if data doesn't in DB
+//         */
+//         $count= $stmt->rowCount();
         
-        $row= $stmt->fetch();
+//         $row= $stmt->fetch();
         
-        $inDb= 1 ;
-        if ($count == $inDb){
-          //   $_SESSION['USER_ID'] = $row['userid'];
-          //   $_SESSION['USER_NAME'] = $adminUsername;
-            $_SESSION['EMAIL'] = $row['email'];
-          //   $_SESSION['FULL_NAME'] = $row['fullname'];
-          //   $_SESSION['GROUP_ID'] = $row['groupid'];
-            header("location:layout.php");
-            exit();
-        }
+//         $inDb= 1 ;
+//         if ($count == $inDb){
+//           //   $_SESSION['USER_ID'] = $row['userid'];
+//           //   $_SESSION['USER_NAME'] = $adminUsername;
+//             $_SESSION['EMAIL'] = $row['email'];
+//           //   $_SESSION['FULL_NAME'] = $row['fullname'];
+//           //   $_SESSION['GROUP_ID'] = $row['groupid'];
+//             header("location:layout.php");
+//             exit();
+//         }
 
-    }
+//     }
     ?>
 
-<div class="container">
+<!-- <div class="container">
         <h2 class="text-center"><?= $lang['admin_login'] ?></h2>
         <!-- Language -->
         <section class="lang-choice">
@@ -50,4 +50,4 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                 <button type="submit" class="btn btn-primary"><?= $lang['submit'] ?></button>
             </form>
         </section>
-    </div>
+    </div> -->
