@@ -1,7 +1,7 @@
 <?php
-require "connection.php";
-require "session.php";
 session_start();
+require_once "connection.php";
+// require_once "cookies.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,6 +66,8 @@ session_start();
 
 
                             <?php
+                            echo $_SESSION['email'];
+
     // include "items.php";
                             include "$_GET[title].php";
 

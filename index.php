@@ -1,9 +1,56 @@
 <?php
+//login.php
+session_start();
+require("connection.php");
+require("cookies.php");
 
-include "session.php";
-session_start();//session starts here  
-// var_dump($_SESSION);
+
+	if(isset($_POST['login'])) {
+		$errMsg = '';
+
+		// Get data from FORM
+		$email = $_POST['user_email'];
+		$password = $_POST['user_password'];
+
+		if($email == '')
+			$errMsg = 'Enter email';
+		if($password == '')
+			$errMsg = 'Enter password';
+
+		if($errMsg == '') {
+			try {
+				$stmt = $connect->prepare('SELECT * FROM login WHERE email = :user_email');
+				$stmt->execute(array(
+					':user_email' => $email
+					));
+				$data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+				if($data == false){
+					$errMsg = "User $email not found.";
+				}
+				else {
+					if($password == $data['password']) {
+						$_SESSION['email'] = $data['email'];
+                        echo "session start";
+						// $_SESSION['username'] = $data['username'];
+						// $_SESSION['password'] = $data['password'];
+						// $_SESSION['secretpin'] = $data['secretpin'];
+						header('Location: layout.php');
+						exit;
+					}
+					else
+						$errMsg = 'Password not match.';
+				}
+			}
+			catch(PDOException $e) {
+				$errMsg = $e->getMessage();
+			}
+		}
+	}
+
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,13 +76,13 @@ session_start();//session starts here
 
                     <form action="" method="POST">
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="text" class="form-control form-control-xl" placeholder="example@gmail.com" name="email">
+                            <input type="text" class="form-control form-control-xl" placeholder="example@gmail.com" name="user_email">
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
                         </div>
                         <div class="form-group position-relative has-icon-left mb-4">
-                            <input type="password" class="form-control form-control-xl" placeholder="Password" name="password">
+                            <input type="password" class="form-control form-control-xl" placeholder="Password" name="user_password">
                             <div class="form-control-icon">
                                 <i class="bi bi-shield-lock"></i>
                             </div>

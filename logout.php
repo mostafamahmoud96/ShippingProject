@@ -1,6 +1,17 @@
 <?php
-session_start();
+ session_start();  
+ session_destroy();  
+//  header("location:index.php"); 
 
-unset($_SESSION['user_mail']); 
-header("Location:index.php");
+setcookie("login", "", time()-3600);
+
+header("location:index.php");
+
+?>
+
+<?php
+// session_start();
+// session_unset();
+// session_destroy();
+// header("Location:index.php");
 ?>
