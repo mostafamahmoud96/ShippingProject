@@ -8,8 +8,8 @@
         
         if(isset($_POST['login']))
         {
-            setcookie("login_email", $_POST["user_email"], time()+3600);
-            setcookie("login_pass", $_POST["user_password"], time()+3600);
+            setcookie("login_email", $_POST["email"], time()+3600);
+            setcookie("login_pass", $_POST["password"], time()+3600);
             
             // header("location:layout.php");
         }else{

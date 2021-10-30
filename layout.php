@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once "connection.php";
+require "session.php";
+// require_once "connection.php";
 // require_once "cookies.php";
 ?>
 <!DOCTYPE html>
