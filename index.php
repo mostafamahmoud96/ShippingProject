@@ -49,11 +49,17 @@ require_once "connection.php";
                             </a>
 
                         </li>
-                        <li class="sidebar-item">
-                            <a href="logout.php" class='sidebar-link' tite="Logout"><i class="bi bi-x bi-middle"></i><span>Logout</span></a>
+                        <li class="sidebar-item  ">
+                            <a href="<?php echo '?sub=track&title=list';?>" class='sidebar-link'>
+                                <i class="bi bi-collection-fill"></i>
+                                <span>Track Shipped items</span>
+                            </a>
+
                         </li>
-
-
+                        <li class="sidebar-item">
+                            <a href="logout.php" class='sidebar-link' tite="Logout"><i
+                                    class="bi bi-x bi-middle"></i><span>Logout</span></a>
+                        </li>
                 </div>
             </div>
 
