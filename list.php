@@ -12,7 +12,7 @@ if ($_GET['sub'] == 'items') {
         <div class="card-header">
             Items
             <span style="float: right;">
-                <a href="<?php echo '?title=create_item' ?>" class="btn-sm icon icon-left btn-success"><i data-feather="alert-circle" style="float: right;"></i>
+                <a href="<?php echo '?title=create&sub=createItem' ?>" class="btn-sm icon icon-left btn-success"><i data-feather="alert-circle" style="float: right;"></i>
                     Add Item</a>
             </span>
         </div>
@@ -64,7 +64,7 @@ if ($_GET['sub'] == 'items') {
         <div class="card-header">
             Transportation Events
             <span style="float: right;">
-                <a href="<?php echo '?title=create_trans' ?>" class="btn-sm icon icon-left btn-success"><i data-feather="alert-circle" style="float: right;"></i>
+                <a href="<?php echo '?title=create&sub=createTrans' ?>" class="btn-sm icon icon-left btn-success"><i data-feather="alert-circle" style="float: right;"></i>
                     Add Transportation Events</a>
             </span>
         </div>
@@ -114,7 +114,7 @@ if ($_GET['sub'] == 'items') {
         <div class="card-header">
             Retail Centers
             <span style="float: right;">
-                <a href="<?php echo '?title=create_retail' ?>" class="btn-sm icon icon-left btn-success"><i data-feather="alert-circle" style="float: right;"></i>
+                <a href="<?php echo '?title=create&sub=createRetail' ?>" class="btn-sm icon icon-left btn-success"><i data-feather="alert-circle" style="float: right;"></i>
                     Add Retail Center</a>
             </span>
         </div>
