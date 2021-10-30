@@ -41,7 +41,7 @@ if ($_GET['sub'] == 'items') {
                                 <a href="<?php echo '?id=' . $item['id'] . '&title=show&sub=showItem' ?>" class="btn-sm icon icon-left btn-primary" style="margin-right: 2%;"><i data-feather="edit"></i>
                                     View</a>
 
-                                <a href="<?php echo '?id=' . $item['id'] . '&title=show&sub=editItem'; ?> " class="btn-sm icon icon-left btn-warning" style="margin-right: 2%;"><i data-feather="alert-triangle"></i>
+                                <a href="<?php echo '?id=' . $item['id'] . '&title=edit&sub=editItem'; ?> " class="btn-sm icon icon-left btn-warning" style="margin-right: 2%;"><i data-feather="alert-triangle"></i>
                                     Edit</a>
 
                                 <a href="<?php echo '?id=' . $item['id'] . '&title=show&sub=deleteItem'; ?> " class="btn-sm icon icon-left btn-danger" style="margin-right: 2%;"><i data-feather="alert-circle"></i>
@@ -91,10 +91,10 @@ if ($_GET['sub'] == 'items') {
                                 <a href="<?php echo '?id=' . $trans['id'] . '&title=show&sub=showTrans' ?>" class="btn-sm icon icon-left btn-primary" style="margin-right: 2%;"><i data-feather="edit"></i>
                                     View</a>
 
-                                <a href="<?php echo '?id=' . $trans['id'] .'&title=show&sub=editTrans'; ?> " class="btn-sm icon icon-left btn-warning" style="margin-right: 2%;"><i data-feather="alert-triangle"></i>
+                                <a href="<?php echo '?id=' . $trans['id'] .'&title=edit&sub=editTrans'; ?> " class="btn-sm icon icon-left btn-warning" style="margin-right: 2%;"><i data-feather="alert-triangle"></i>
                                     Edit</a>
 
-                                <a href="<?php echo '?id=' . $trans['id'] . '&title=show&sub=deleteTrans'; ?> " class="btn-sm icon icon-left btn-danger" style="margin-right: 2%;"><i data-feather="alert-circle"></i>
+                                <a href="<?php echo '?id=' . $trans['id'] . '&title=edit&sub=deleteTrans'; ?> " class="btn-sm icon icon-left btn-danger" style="margin-right: 2%;"><i data-feather="alert-circle"></i>
                                     Delete</a>
                             </td>
                         </tr>
@@ -141,7 +141,7 @@ if ($_GET['sub'] == 'items') {
                                 <a href="<?php echo '?id=' . $retail['id'] . '&title=show&sub=showRetail' ?>" class="btn-sm icon icon-left btn-primary" style="margin-right: 2%;"><i data-feather="edit"></i>
                                     View</a>
 
-                                <a href="<?php echo '?id=' . $retail['id'] . '&title=show&sub=editRetail'; ?> " class="btn-sm icon icon-left btn-warning" style="margin-right: 2%;"><i data-feather="alert-triangle"></i>
+                                <a href="<?php echo '?id=' . $retail['id'] . '&title=edit&sub=editRetail'; ?> " class="btn-sm icon icon-left btn-warning" style="margin-right: 2%;"><i data-feather="alert-triangle"></i>
                                     Edit</a>
 
                                 <a href="<?php echo '?id=' . $retail['id'] . '&title=show&sub=deleteRetail'; ?> " class="btn-sm icon icon-left btn-danger" style="margin-right: 2%;"><i data-feather="alert-circle"></i>

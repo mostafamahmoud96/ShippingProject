@@ -104,7 +104,7 @@ session_start();
                         </span>
                     </li>
 
-                    <li class="list-group-item">Router:
+                    <li class="list-group-item">Route:
                         <span style="color: black;"> <?php
                                                         echo $trans['delivery_route']
                                                         ?>
