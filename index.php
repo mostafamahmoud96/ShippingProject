@@ -5,45 +5,48 @@ require("connection.php");
 require("cookies.php");
 
 
-if (isset($_POST['login'])) {
-	$errMsg = '';
+	if(isset($_POST['login'])) {
+		$errMsg = '';
 
-	// Get data from FORM
-	$email = $_POST['user_email'];
-	$password = $_POST['user_password'];
+		// Get data from FORM
+		$email = $_POST['user_email'];
+		$password = $_POST['user_password'];
 
-	if ($email == '')
-		$errMsg = 'Enter email';
-	if ($password == '')
-		$errMsg = 'Enter password';
+		if($email == '')
+			$errMsg = 'Enter email';
+		if($password == '')
+			$errMsg = 'Enter password';
 
-	if ($errMsg == '') {
-		try {
-			$stmt = $connect->prepare('SELECT * FROM login WHERE email = :user_email');
-			$stmt->execute(array(
-				':user_email' => $email
-			));
-			$data = $stmt->fetch(PDO::FETCH_ASSOC);
+		if($errMsg == '') {
+			try {
+				$stmt = $connect->prepare('SELECT * FROM login WHERE email = :user_email');
+				$stmt->execute(array(
+					':user_email' => $email
+					));
+				$data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-			if ($data == false) {
-				$errMsg = "User $email not found.";
-			} else {
-				if ($password == $data['password']) {
-					$_SESSION['email'] = $data['email'];
-					echo "session start";
-					// $_SESSION['username'] = $data['username'];
-					// $_SESSION['password'] = $data['password'];
-					// $_SESSION['secretpin'] = $data['secretpin'];
-					header('Location: layout.php');
-					exit;
-				} else
-					$errMsg = 'Password not match.';
+				if($data == false){
+					$errMsg = "User $email not found.";
+				}
+				else {
+					if($password == $data['password']) {
+						$_SESSION['email'] = $data['email'];
+                        echo "session start";
+						// $_SESSION['username'] = $data['username'];
+						// $_SESSION['password'] = $data['password'];
+						// $_SESSION['secretpin'] = $data['secretpin'];
+						header('Location: layout.php');
+						exit;
+					}
+					else
+						$errMsg = 'Password not match.';
+				}
 			}
-		} catch (PDOException $e) {
-			$errMsg = $e->getMessage();
+			catch(PDOException $e) {
+				$errMsg = $e->getMessage();
+			}
 		}
 	}
-}
 
 ?>
 
