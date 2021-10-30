@@ -1,9 +1,12 @@
 <?php
- session_start();  
- session_destroy();  
-//  header("location:index.php"); 
+session_start();
+session_unset();
+session_destroy();
+// //  header("location:index.php"); 
 
 setcookie("login", "", time()-3600);
+
+unset($_COOKIE['login']);   
 
 header("location:index.php");
 
