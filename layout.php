@@ -29,10 +29,10 @@ require_once "connection.php";
                 <div class="sidebar-menu">
                     <ul class="menu">
                         <!-- <li class="sidebar-title">Menu</li> -->
-                        <li class="sidebar-item active ">
+                        <li class="sidebar-item">
                             <a href="<?php echo '?title=items';?>" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
-                                <span>Items</span>
+                                <span>Shipped Items</span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
@@ -66,10 +66,8 @@ require_once "connection.php";
 
 
                             <?php
-                            echo $_SESSION['email'];
 
-    // include "items.php";
-                            include "$_GET[title].php";
+                            include "list.php";
 
 
                             ?>

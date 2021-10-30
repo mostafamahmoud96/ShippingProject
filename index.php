@@ -2,51 +2,39 @@
 //login.php
 session_start();
 require("connection.php");
-require("cookies.php");
+require("session.php");
+// require("cookies.php");
 
-
-	if(isset($_POST['login'])) {
-		$errMsg = '';
-
-		// Get data from FORM
-		$email = $_POST['user_email'];
-		$password = $_POST['user_password'];
-
-		if($email == '')
-			$errMsg = 'Enter email';
-		if($password == '')
-			$errMsg = 'Enter password';
-
-		if($errMsg == '') {
-			try {
-				$stmt = $connect->prepare('SELECT * FROM login WHERE email = :user_email');
-				$stmt->execute(array(
-					':user_email' => $email
-					));
-				$data = $stmt->fetch(PDO::FETCH_ASSOC);
-
-				if($data == false){
-					$errMsg = "User $email not found.";
-				}
-				else {
-					if($password == $data['password']) {
-						$_SESSION['email'] = $data['email'];
-                        echo "session start";
-						// $_SESSION['username'] = $data['username'];
-						// $_SESSION['password'] = $data['password'];
-						// $_SESSION['secretpin'] = $data['secretpin'];
-						header('Location: layout.php');
-						exit;
-					}
-					else
-						$errMsg = 'Password not match.';
-				}
-			}
-			catch(PDOException $e) {
-				$errMsg = $e->getMessage();
-			}
-		}
-	}
+// session_start();
+// if(isset($_POST['login'])){
+// 	$username = $_POST['user_email'];
+// 	$password = $_POST['useer_password'];
+// 	//check login details
+// 	$stmt = $connect->prepare("select * from `login` where `email` = '$username' and `password` = '$password'");
+// 	$stmt->execute();
+// 	//echo $stmt->rowCount();
+// 	//exit();
+// 	if($stmt->rowCount()>0){
+// 		// $_SESSION['username'] = $username; ana br
+// 		// a2bk 25dt bali :)  anha h
+// 		// ana bara2bk w hara2bk hhhhhhhhhhhh
+// 		// hhhhhhhhhhhhhhhh mashy enjoy b2a 
+// 		// l session hatmotni ya moustafa hhhh
+// 		// sebeha dlw2ty w honshofha b3den 
+// 		// ok 2w3a taslm l project bl kalam da
+// 		// da ytl3 error kam da hhhhhhhhhhhh
+// 		// error ignore405 hhwhwhwh 
+// 		// 2hm 7aga l ignore 
+// 		// yala nshta8l b2a 
+// 		// eshta  yala 
+// 		header("location: layout.php");
+// 		$_SESSION['success'] = "You are logged in";
+// 	}
+// 	else{
+// 		header("location: index.php");
+// 		$_SESSION['error'] = "<div class='alert alert-danger' role='alert'>Oh snap! Invalid login details.</div>";
+// 		}
+// 	}	
 
 ?>
 
@@ -73,7 +61,7 @@ require("cookies.php");
                 <div id="auth-left">
                  
                     <h1 class="auth-title mb-5">Log in.</h1>
-
+					<?php if(isset($_SESSION['error'])){ echo $_SESSION['error']; }?>
                     <form action="" method="POST">
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="text" class="form-control form-control-xl" placeholder="example@gmail.com" name="user_email">
