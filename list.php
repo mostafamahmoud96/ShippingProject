@@ -4,7 +4,8 @@ include("connection.php");
 ?>
 <!-- shipped_items -->
 <?php
-if ($_GET['title'] == 'items') {
+if ($_GET['sub'] == 'items') {
+    // echo "55";
     $get_item = mysqli_query($conn, 'SELECT * FROM `shipped_items`');
 ?>
     <div class="card">
@@ -37,13 +38,13 @@ if ($_GET['title'] == 'items') {
                             <!--  -->
 
                             <td colspan="3">
-                                <a href="<?php echo '?id=' . $item['id'] . '&title=showItem' ?>" class="btn-sm icon icon-left btn-primary" style="margin-right: 2%;"><i data-feather="edit"></i>
+                                <a href="<?php echo '?id=' . $item['id'] . '&title=show&sub=showItem' ?>" class="btn-sm icon icon-left btn-primary" style="margin-right: 2%;"><i data-feather="edit"></i>
                                     View</a>
 
-                                <a href="<?php echo '?id=' . $item['id'] . '&' . 'title=editItem'; ?> " class="btn-sm icon icon-left btn-warning" style="margin-right: 2%;"><i data-feather="alert-triangle"></i>
+                                <a href="<?php echo '?id=' . $item['id'] . '&title=show&sub=editItem'; ?> " class="btn-sm icon icon-left btn-warning" style="margin-right: 2%;"><i data-feather="alert-triangle"></i>
                                     Edit</a>
 
-                                <a href="<?php echo '?id=' . $item['id'] . '&' . 'title=adeleteItem'; ?> " class="btn-sm icon icon-left btn-danger" style="margin-right: 2%;"><i data-feather="alert-circle"></i>
+                                <a href="<?php echo '?id=' . $item['id'] . '&title=show&sub=deleteItem'; ?> " class="btn-sm icon icon-left btn-danger" style="margin-right: 2%;"><i data-feather="alert-circle"></i>
                                     Delete</a>
                             </td>
                         </tr>
@@ -56,7 +57,7 @@ if ($_GET['title'] == 'items') {
         </div>
     </div>
 <?php
-} elseif ($_GET['title'] == 'trans') {
+} elseif ($_GET['sub'] == 'trans') {
     $get_trans = mysqli_query($conn, 'SELECT * FROM `transportation_events`');
 ?>
   <div class="card">
@@ -87,13 +88,13 @@ if ($_GET['title'] == 'items') {
                             <!--  -->
 
                             <td colspan="3">
-                                <a href="<?php echo '?id=' . $trans['id'] . '&title=showTrans' ?>" class="btn-sm icon icon-left btn-primary" style="margin-right: 2%;"><i data-feather="edit"></i>
+                                <a href="<?php echo '?id=' . $trans['id'] . '&title=show&sub=showTrans' ?>" class="btn-sm icon icon-left btn-primary" style="margin-right: 2%;"><i data-feather="edit"></i>
                                     View</a>
 
-                                <a href="<?php echo '?id=' . $trans['id'] . '&' . 'title=editTrans'; ?> " class="btn-sm icon icon-left btn-warning" style="margin-right: 2%;"><i data-feather="alert-triangle"></i>
+                                <a href="<?php echo '?id=' . $trans['id'] .'&title=show&sub=editTrans'; ?> " class="btn-sm icon icon-left btn-warning" style="margin-right: 2%;"><i data-feather="alert-triangle"></i>
                                     Edit</a>
 
-                                <a href="<?php echo '?id=' . $trans['id'] . '&' . 'title=deleteTrans'; ?> " class="btn-sm icon icon-left btn-danger" style="margin-right: 2%;"><i data-feather="alert-circle"></i>
+                                <a href="<?php echo '?id=' . $trans['id'] . '&title=show&sub=deleteTrans'; ?> " class="btn-sm icon icon-left btn-danger" style="margin-right: 2%;"><i data-feather="alert-circle"></i>
                                     Delete</a>
                             </td>
                         </tr>
@@ -106,7 +107,7 @@ if ($_GET['title'] == 'items') {
         </div>
     </div>
 <?php
-} elseif ($_GET['title'] == 'retails') {
+} elseif ($_GET['sub'] == 'retails') {
     $get_retails= mysqli_query($conn, 'SELECT * FROM `retail_center`');
 ?>
   <div class="card">
@@ -121,7 +122,7 @@ if ($_GET['title'] == 'items') {
             <table class="table table-striped" id="table1">
                 <thead>
                     <tr>
-                        <th>NAme</th>
+                        <th>Name</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -137,13 +138,13 @@ if ($_GET['title'] == 'items') {
                             <!--  -->
 
                             <td colspan="3">
-                                <a href="<?php echo '?id=' . $retail['id'] . '&title=showRetail' ?>" class="btn-sm icon icon-left btn-primary" style="margin-right: 2%;"><i data-feather="edit"></i>
+                                <a href="<?php echo '?id=' . $retail['id'] . '&title=show&sub=showRetail' ?>" class="btn-sm icon icon-left btn-primary" style="margin-right: 2%;"><i data-feather="edit"></i>
                                     View</a>
 
-                                <a href="<?php echo '?id=' . $retail['id'] . '&' . 'title=editRetail'; ?> " class="btn-sm icon icon-left btn-warning" style="margin-right: 2%;"><i data-feather="alert-triangle"></i>
+                                <a href="<?php echo '?id=' . $retail['id'] . '&title=show&sub=editRetail'; ?> " class="btn-sm icon icon-left btn-warning" style="margin-right: 2%;"><i data-feather="alert-triangle"></i>
                                     Edit</a>
 
-                                <a href="<?php echo '?id=' . $retail['id'] . '&' . 'title=deleteRetail'; ?> " class="btn-sm icon icon-left btn-danger" style="margin-right: 2%;"><i data-feather="alert-circle"></i>
+                                <a href="<?php echo '?id=' . $retail['id'] . '&title=show&sub=deleteRetail'; ?> " class="btn-sm icon icon-left btn-danger" style="margin-right: 2%;"><i data-feather="alert-circle"></i>
                                     Delete</a>
                             </td>
                         </tr>
