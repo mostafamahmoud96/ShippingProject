@@ -13,7 +13,7 @@
 <body>
     <div id="app">
         <?php
-        if ($_GET['sub'] == 'item') {
+        if ($_GET['sub'] == 'editItem') {
             $item = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `shipped_items` WHERE `id` = $_GET[id]"));
             $all_retail = mysqli_query($conn, "SELECT * FROM `retail_center`");
             $retail = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `retail_center` WHERE `id`= $item[retail_center_id]"));
@@ -157,18 +157,19 @@
                     `retail_center_id`=$retail_id,`name`='$item_name',`weight`=$weight,`dimension`='$dimension',`final_delivery_date`='$delivered_at',
                     `destination`='$destination',`insurance_amount`=$insurance_amount WHERE `id`=$item_id
                     ");
-                if ($query) {
+               if ($query) {
 
-                    echo "<script>alert('message send succesfully')</script>";
-                    // header("location://javascript:history.go(-1)()");
-                    // header("Location: {$_SERVER["HTTP_REFERER"]}");
-                    // header("location:javascript://history.go(-1)");
-                }
+                echo "<script>alert('message send succesfully')</script>";
+                // header("location://javascript:history.go(-1)()");
+                // header("Location: {$_SERVER["HTTP_REFERER"]}");
+                // header("location:javascript://history.go(-1)");
             }
         }
-        ?>
-        <?php
-        if ($_GET['sub'] == 'trans') {
+    }
+    ?>
+
+<?php        
+        if ($_GET['sub'] == 'editTrans') {
             $trans = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `transportation_events` WHERE `id` = $_GET[id]"));
             $all_event = mysqli_query($conn, "SELECT DISTINCT `type` FROM `transportation_events`");
         ?>
@@ -223,7 +224,7 @@
                     </form>
                 </div>
             </div>
-    </div>
+    <!-- </div> -->
 <?php
             if (isset($_POST['edit'])) {
                 $trans_id = $_POST['trans_id'];
@@ -245,7 +246,7 @@
 ?>
 
 <?php
-if ($_GET['sub'] == 'retail') {
+if ($_GET['sub'] == 'editRetail') {
     $retail = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `retail_center` WHERE `id` = $_GET[id]"));
     $all_retail = mysqli_query($conn, "SELECT DISTINCT `type` FROM `retail_center`");
 ?>
@@ -313,7 +314,7 @@ if ($_GET['sub'] == 'retail') {
             </form>
         </div>
     </div>
-    </div>
+    <!-- </div> -->
 <?php
     if (isset($_POST['edit'])) {
         $retail_id = $_POST['retail_id'];
@@ -415,6 +416,7 @@ if ($_GET['sub'] == 'track') {
                             </tr>
                         <?php
                         }
+                    
                         ?>
                         <div class="col-12 d-flex justify-content-end">
                             <button type="submit" class="btn btn-primary me-1 mb-1" name="edit">Edit</button>

@@ -30,25 +30,31 @@ if ($_GET['sub'] == 'items') {
                     <?php
                     while ($item = mysqli_fetch_array($get_item)) {
                     ?>
-                        <tr>
-                            <td>
-                                <div class="avatar me-3">
-                                </div><?php echo $item['name'] ?>
-                            </td>
-                            <!--  -->
+                <tr>
+                    <td>
+                        <div class="avatar me-3">
+                        </div><?php echo $item['name'] ?>
+                    </td>
+                    <!--  -->
 
-                            <td colspan="3">
-                                <a href="<?php echo '?id=' . $item['id'] . '&title=show&sub=item' ?>" class="btn-sm icon icon-left btn-primary" style="margin-right: 2%;"><i data-feather="edit"></i>
-                                    View</a>
+                    <td colspan="3">
+                        <a href="<?php echo '?id=' . $item['id'] . '&title=show&sub=showItem' ?>"
+                            class="btn-sm icon icon-left btn-primary" style="margin-right: 2%;"><i
+                                data-feather="edit"></i>
+                            View</a>
 
-                                <a href="<?php echo '?id=' . $item['id'] . '&title=edit&sub=item'; ?> " class="btn-sm icon icon-left btn-warning" style="margin-right: 2%;"><i data-feather="alert-triangle"></i>
-                                    Edit</a>
+                        <a href="<?php echo '?id=' . $item['id'] . '&title=edit&sub=editItem'; ?> "
+                            class="btn-sm icon icon-left btn-warning" style="margin-right: 2%;"><i
+                                data-feather="alert-triangle"></i>
+                            Edit</a>
 
-                                <a href="<?php echo '?id=' . $item['id'] . '&title=show&sub=deleteItem'; ?> " class="btn-sm icon icon-left btn-danger" style="margin-right: 2%;"><i data-feather="alert-circle"></i>
-                                    Delete</a>
-                            </td>
-                        </tr>
-                    <?php
+                        <a href="<?php echo '?id=' . $item['id'] . '&title=delete&sub=deleteItem'; ?> "
+                            class="btn-sm icon icon-left btn-danger" style="margin-right: 2%;"><i
+                                data-feather="alert-circle"></i>
+                            Delete</a>
+                    </td>
+                </tr>
+                <?php
                     }
                     ?>
 
@@ -80,25 +86,31 @@ if ($_GET['sub'] == 'items') {
                     <?php
                     while ($trans = mysqli_fetch_array($get_trans)) {
                     ?>
-                        <tr>
-                            <td>
-                                <div class="avatar me-3">
-                                </div><?php echo $trans['type'] ?>
-                            </td>
-                            <!--  -->
+                <tr>
+                    <td>
+                        <div class="avatar me-3">
+                        </div><?php echo $trans['type'] ?>
+                    </td>
+                    <!--  -->
 
-                            <td colspan="3">
-                                <a href="<?php echo '?id=' . $trans['id'] . '&title=show&sub=trans' ?>" class="btn-sm icon icon-left btn-primary" style="margin-right: 2%;"><i data-feather="edit"></i>
-                                    View</a>
+                    <td colspan="3">
+                        <a href="<?php echo '?id=' . $trans['id'] . '&title=show&sub=showTrans' ?>"
+                            class="btn-sm icon icon-left btn-primary" style="margin-right: 2%;"><i
+                                data-feather="edit"></i>
+                            View</a>
 
-                                <a href="<?php echo '?id=' . $trans['id'] . '&title=edit&sub=trans'; ?> " class="btn-sm icon icon-left btn-warning" style="margin-right: 2%;"><i data-feather="alert-triangle"></i>
-                                    Edit</a>
+                        <a href="<?php echo '?id=' . $trans['id'] . '&title=edit&sub=editTrans'; ?> "
+                            class="btn-sm icon icon-left btn-warning" style="margin-right: 2%;"><i
+                                data-feather="alert-triangle"></i>
+                            Edit</a>
 
-                                <a href="<?php echo '?id=' . $trans['id'] . '&title=edit&sub=deleteTrans'; ?> " class="btn-sm icon icon-left btn-danger" style="margin-right: 2%;"><i data-feather="alert-circle"></i>
-                                    Delete</a>
-                            </td>
-                        </tr>
-                    <?php
+                        <a href="<?php echo '?id=' . $trans['id'] . '&title=delete&sub=deleteTrans'; ?> "
+                            class="btn-sm icon icon-left btn-danger" style="margin-right: 2%;"><i
+                                data-feather="alert-circle"></i>
+                            Delete</a>
+                    </td>
+                </tr>
+                <?php
                     }
                     ?>
 
@@ -130,25 +142,31 @@ if ($_GET['sub'] == 'items') {
                     <?php
                     while ($retail = mysqli_fetch_array($get_retails)) {
                     ?>
-                        <tr>
-                            <td>
-                                <div class="avatar me-3">
-                                </div><?php echo $retail['name'] ?>
-                            </td>
-                            <!--  -->
+                <tr>
+                    <td>
+                        <div class="avatar me-3">
+                        </div><?php echo $retail['name'] ?>
+                    </td>
+                    <!--  -->
 
-                            <td colspan="3">
-                                <a href="<?php echo '?id=' . $retail['id'] . '&title=show&sub=retail' ?>" class="btn-sm icon icon-left btn-primary" style="margin-right: 2%;"><i data-feather="edit"></i>
-                                    View</a>
+                    <td colspan="3">
+                        <a href="<?php echo '?id=' . $retail['id'] . '&title=show&sub=showRetail' ?>"
+                            class="btn-sm icon icon-left btn-primary" style="margin-right: 2%;"><i
+                                data-feather="edit"></i>
+                            View</a>
 
-                                <a href="<?php echo '?id=' . $retail['id'] . '&title=edit&sub=retail'; ?> " class="btn-sm icon icon-left btn-warning" style="margin-right: 2%;"><i data-feather="alert-triangle"></i>
-                                    Edit</a>
+                        <a href="<?php echo '?id=' . $retail['id'] . '&title=edit&sub=editRetail'; ?> "
+                            class="btn-sm icon icon-left btn-warning" style="margin-right: 2%;"><i
+                                data-feather="alert-triangle"></i>
+                            Edit</a>
 
-                                <a href="<?php echo '?id=' . $retail['id'] . '&title=show&sub=deleteRetail'; ?> " class="btn-sm icon icon-left btn-danger" style="margin-right: 2%;"><i data-feather="alert-circle"></i>
-                                    Delete</a>
-                            </td>
-                        </tr>
-                    <?php
+                        <a href="<?php echo '?id=' . $retail['id'] . '&title=delete&sub=deleteRetail'; ?> "
+                            class="btn-sm icon icon-left btn-danger" style="margin-right: 2%;"><i
+                                data-feather="alert-circle"></i>
+                            Delete</a>
+                    </td>
+                </tr>
+                <?php
                     }
                     ?>
 
@@ -156,6 +174,7 @@ if ($_GET['sub'] == 'items') {
             } elseif ($_GET['sub'] == 'track') {
 
                 // $track_id = mysqli_query($conn, "SELECT * FROM `item_transportations`)");
+                $track_id = mysqli_query($conn, 'SELECT * FROM `item_transportations`');
                 // echo "SELECT * FROM `transportation_events` where `id` = $track_id[id]";
                 ?>
                     <div class="card">

@@ -4,7 +4,7 @@ session_start();
 <div class="row">
     <div class="col-12">
         <?php
-        if ($_GET['sub'] == 'item') {
+        if ($_GET['sub'] == 'showItem') {
             $item = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `shipped_items` WHERE `id` = $_GET[id]"));
             $retail = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `retail_center` WHERE `id`= $item[retail_center_id]"));
         ?>
@@ -77,7 +77,7 @@ session_start();
 
             </div>
         <?php
-        } elseif ($_GET['sub'] == 'trans') {
+        } elseif ($_GET['sub'] == 'showTrans') {
             $trans = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `transportation_events` WHERE `id` = $_GET[id]"));
 
         ?>
@@ -115,7 +115,7 @@ session_start();
 
             </div>
         <?php
-        } elseif ($_GET['sub'] == 'retail') {
+        } elseif ($_GET['sub'] == 'showRetail') {
             $retail = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `retail_center` WHERE `id` = $_GET[id]"));
 
         ?>
