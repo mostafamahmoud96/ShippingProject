@@ -49,7 +49,7 @@ if ($_GET['sub'] == 'items') {
                                 data-feather="alert-triangle"></i>
                             Edit</a>
 
-                        <a href="<?php echo '?id=' . $item['id'] . '&title=show&sub=deleteItem'; ?> "
+                        <a href="<?php echo '?id=' . $item['id'] . '&title=delete&sub=deleteItem'; ?> "
                             class="btn-sm icon icon-left btn-danger" style="margin-right: 2%;"><i
                                 data-feather="alert-circle"></i>
                             Delete</a>
@@ -106,7 +106,7 @@ if ($_GET['sub'] == 'items') {
                                 data-feather="alert-triangle"></i>
                             Edit</a>
 
-                        <a href="<?php echo '?id=' . $trans['id'] . '&title=edit&sub=deleteTrans'; ?> "
+                        <a href="<?php echo '?id=' . $trans['id'] . '&title=delete&sub=deleteTrans'; ?> "
                             class="btn-sm icon icon-left btn-danger" style="margin-right: 2%;"><i
                                 data-feather="alert-circle"></i>
                             Delete</a>
@@ -163,7 +163,7 @@ if ($_GET['sub'] == 'items') {
                                 data-feather="alert-triangle"></i>
                             Edit</a>
 
-                        <a href="<?php echo '?id=' . $retail['id'] . '&title=show&sub=deleteRetail'; ?> "
+                        <a href="<?php echo '?id=' . $retail['id'] . '&title=delete&sub=deleteRetail'; ?> "
                             class="btn-sm icon icon-left btn-danger" style="margin-right: 2%;"><i
                                 data-feather="alert-circle"></i>
                             Delete</a>
@@ -175,7 +175,7 @@ if ($_GET['sub'] == 'items') {
 
                 <?php
             } elseif ($_GET['sub'] == 'track') {
-              $track_id = mysqli_query($conn, 'SELECT * FROM `item_transportations`');
+                $track_id = mysqli_query($conn, 'SELECT * FROM `item_transportations`');
                 // echo "SELECT * FROM `transportation_events` where `id` = $track_id[id]";
                 ?>
                 <div class="card">
@@ -221,7 +221,7 @@ if ($_GET['sub'] == 'items') {
                                                 data-feather="alert-triangle"></i>
                                             Edit</a>
 
-                                        <a href="<?php echo '?id=' . $retail['id'] . '&title=show&sub=deleteRetail'; ?> "
+                                        <a href="<?php echo '?id=' . $item_data['id'] . '&title=delete&sub=deleteTrack'; ?> "
                                             class="btn-sm icon icon-left btn-danger" style="margin-right: 2%;"><i
                                                 data-feather="alert-circle"></i>
                                             Delete</a>

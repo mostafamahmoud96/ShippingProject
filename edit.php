@@ -12,169 +12,7 @@
 
 <body>
     <div id="app">
-        <?php
-        if ($_GET['sub'] == 'editItem') {
-            $item = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `shipped_items` WHERE `id` = $_GET[id]"));
-            $all_retail = mysqli_query($conn, "SELECT * FROM `retail_center`");
-            $retail = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `retail_center` WHERE `id`= $item[retail_center_id]"));
-        ?>
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Edit Item Data</h4>
-            </div>
-            <div class="card-content">
-                <div class="card-body">
-                    <form class="form form-horizontal" method="post" action="<?php //header("Location: index.php?title=list&sub=items"); 
-                                                                                    ?>">
-                        <div class="form-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label> Item Name</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="form-group has-icon-left">
-                                        <div class="position-relative">
-                                            <input type="hidden" name="item_id" value="<?php echo $item['id'] ?>">
-                                            <input type="text" class="form-control" name="item_name"
-                                                value="<?php echo $item['name']; ?>">
-                                            <div class="form-control-icon">
 
-                                                <i class="bi bi-person"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- <div class="col-md-4"> -->
-
-
-                                <div class="col-md-4">
-                                    <label>Retail Center</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="form-group has-icon-left">
-                                        <div class="position-relative">
-                                            <select class="form-select control" id="RetailSelect" name="retail_id">
-                                                <?php
-                                                    while ($one_retail = mysqli_fetch_array($all_retail)) {
-                                                    ?>
-                                                <option value="<?php echo $one_retail['id']; ?>"
-                                                    <?php if ($one_retail['id'] == $retail['id']) { ?>selected="selected"
-                                                    <?php } ?>><?php echo $one_retail['name'] ?></option>
-                                                < <?php
-                                                        }
-                                                            ?> </select>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-md-4">
-                                    <label>Weight:</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="form-group has-icon-left">
-                                        <div class="position-relative">
-                                            <input type="text" class="form-control" name="weight"
-                                                value="<?php echo $item['weight'] ?>">
-                                            <div class="form-control-icon">
-                                                <i class="bi bi-person"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label>Dimension:</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="form-group has-icon-left">
-                                        <div class="position-relative">
-                                            <input type="text" class="form-control" name="dimension"
-                                                value="<?php echo $item['dimension'] ?>">
-                                            <div class="form-control-icon">
-                                                <i class="bi bi-person"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label>Destination:</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="form-group has-icon-left">
-                                        <div class="position-relative">
-                                            <input type="text" class="form-control" name="destination"
-                                                value="<?php echo $item['destination'] ?>">
-                                            <div class="form-control-icon">
-                                                <i class="bi bi-person"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label>Delivered At:</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="form-group has-icon-left">
-                                        <div class="position-relative">
-                                            <input type="text" class="form-control" name="delivered_at"
-                                                value="<?php echo $item['final_delivery_date'] ?>">
-                                            <div class="form-control-icon">
-                                                <i class="bi bi-person"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label>Insurance Amount:</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="form-group has-icon-left">
-                                        <div class="position-relative">
-                                            <input type="text" class="form-control" name="insurance_amount"
-                                                value="<?php echo $item['insurance_amount'] ?>">
-                                            <div class="form-control-icon">
-                                                <i class="bi bi-person"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary me-1 mb-1" name="edit">Edit</button>
-
-                                </div>
-                            </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <?php
-            if (isset($_POST['edit'])) {
-                $item_id = $_POST['item_id'];
-                $item_name = $_POST['item_name'];
-                $retail_id = $_POST['retail_id'];
-                $weight = $_POST['weight'];
-                $dimension = $_POST['dimension'];
-                $destination = $_POST['destination'];
-                $delivered_at = $_POST['delivered_at'];
-                $insurance_amount = $_POST['insurance_amount'];
-
-                $query = mysqli_query($conn, "UPDATE `shipped_items` SET 
-                    `retail_center_id`=$retail_id,`name`='$item_name',`weight`=$weight,`dimension`='$dimension',`final_delivery_date`='$delivered_at',
-                    `destination`='$destination',`insurance_amount`=$insurance_amount WHERE `id`=$item_id
-                    ");
-                if ($query) {
-
-                    echo "<script>alert('message send succesfully')</script>";
-                    // header("location://javascript:history.go(-1)()");
-                    // header("Location: {$_SERVER["HTTP_REFERER"]}");
-                    // header("location:javascript://history.go(-1)");
-                }
-            }
-        }
-        ?>
         <?php
         if ($_GET['sub'] == 'editTrans') {
             $trans = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `transportation_events` WHERE `id` = $_GET[id]"));
@@ -514,10 +352,9 @@ if ($_GET['sub'] == 'editItem') {
 ?>
     <?php
 if ($_GET['sub'] == 'track') {
-    echo "55";
-    $shipped_item = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM  shipped_items where  id=$_GET[id]"));
+    $shipped_item = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM  shipped_items where  id=$_GET[id]")); //
     $event = mysqli_query($conn, "SELECT  * FROM transportation_events ");
-    $pivot = mysqli_fetch_array(mysqli_query($conn, "SELECT  * FROM item_transportations where  item_id=$_GET[id]"));
+    $pivot = mysqli_fetch_array(mysqli_query($conn, "SELECT   * FROM item_transportations where  item_id=$_GET[id]"));
 ?>
     <div class="card">
         <div class="card-header">
@@ -539,12 +376,12 @@ if ($_GET['sub'] == 'track') {
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input type="text" class="form-control" name="item"
-                                            value="<?php echo $shipped_item['id'] ?>" readonly>
+                                            value="<?php echo $shipped_item['name'] ?>" readonly>
                                         <!-- <select class="form-select control" id="item" name="item">
                                             <?php
                                           //  while ($items = mysqli_fetch_array($shipped_item)) {
                                             ?>
-                                            <option value="<?php// echo $items['id']; ?>"
+                                            <option value="<?php // echo $items['id']; ?>"
                                                 <?php //if ($items['id'] == $pivot['item_id']) { ?>selected="selected"
                                                 <?php //} ?>><?php //echo $items['name'] ?></option>
                                             <?php } ?>
@@ -607,7 +444,7 @@ if ($_GET['sub'] == 'track') {
             // header("location:javascript://history.go(-1)");
         }
     }
-}
+
 ?>
 
 
