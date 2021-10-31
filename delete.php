@@ -28,13 +28,9 @@ elseif($_GET['sub'] == 'deleteRetail'){
     header("location :index.php?sub=retails&title=list");
 
 } elseif ($_GET['sub'] == 'deleteTrack') {
-    
-    //  echo $_GET['id'];
     $sql = "DELETE FROM item_transportations ";
     $sql .= "WHERE id='" . $_GET['id'] . "' ";
     $sql .= "LIMIT 1";
-    echo $sql ;
-    
-    // $result = mysqli_query($conn, $sql);
-    // header("location :index.php?sub=track&title=list");
+    $result = mysqli_query($conn, $sql);
+    header("location :index.php?sub=track&title=list");
 }

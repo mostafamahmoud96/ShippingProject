@@ -400,7 +400,7 @@ if ($_GET['sub'] == 'track') {
                                                     <?php
                                                     while ($trans_event = mysqli_fetch_array($event)) {
                                                     ?>
-                                                        <option value="<?php echo $trans_event['id']; ?>" <?php if($item['id'] == $shipped_['id']) { 
+                                                        <option value="<?php echo $trans_event['id']; ?>" <?php if($track['id'] == $trans_event['id']) { 
                                                                                                             ?>selected="selected" <?php } 
                                                                                                                                     ?>><?php echo $trans_event['type'] ?></option>
                                                         < <?php
