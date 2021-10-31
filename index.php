@@ -1,7 +1,18 @@
 <?php
 session_start();
+
 require_once "connection.php";
-// require_once "cookies.php";
+
+if (!isset($_COOKIE['username']) || !isset($_COOKIE['password'])  ) {
+	header('Location: /shippingProject/login.php');
+	 exit;
+} elseif (!isset($_SESSION['login'])) 
+{
+    header('Location: /shippingProject/login.php');
+	 exit;
+
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

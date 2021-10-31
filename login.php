@@ -3,39 +3,28 @@
 session_start();
 require("connection.php");
 // require("session.php");
-// require("cookies.php");
+if (isset($_POST['login']) && isset($_POST['password']) && $_POST['login'] != '' && $_POST['password'] != '') //when form submitted
+{
 
-// session_start();
-// if(isset($_POST['login'])){
-// 	$username = $_POST['user_email'];
-// 	$password = $_POST['useer_password'];
-// 	//check login details
-// 	$stmt = $connect->prepare("select * from `login` where `email` = '$username' and `password` = '$password'");
-// 	$stmt->execute();
-// 	//echo $stmt->rowCount();
-// 	//exit();
-// 	if($stmt->rowCount()>0){
-// 		// $_SESSION['username'] = $username; ana br
-// 		// a2bk 25dt bali :)  anha h
-// 		// ana bara2bk w hara2bk hhhhhhhhhhhh
-// 		// hhhhhhhhhhhhhhhh mashy enjoy b2a 
-// 		// l session hatmotni ya moustafa hhhh
-// 		// sebeha dlw2ty w honshofha b3den 
-// 		// ok 2w3a taslm l project bl kalam da
-// 		// da ytl3 error kam da hhhhhhhhhhhh
-// 		// error ignore405 hhwhwhwh 
-// 		// 2hm 7aga l ignore 
-// 		// yala nshta8l b2a 
-// 		// eshta  yala 
-// 		header("location: layout.php");
-// 		$_SESSION['success'] = "You are logged in";
-// 	}
-// 	else{
-// 		header("location: index.php");
-// 		$_SESSION['error'] = "<div class='alert alert-danger' role='alert'>Oh snap! Invalid login details.</div>";
-// 		}
-// 	}	
-
+  $sel = mysqli_query($conn, "SELECT * FROM login WHERE email='".$_POST['login']."' && password = '".$_POST['password']."'");
+  $row = mysqli_fetch_assoc($sel);
+  if (mysqli_num_rows($sel) > 0) {
+    if ($_POST['login'] === $row['email'] && $_POST['password'] === $row['password'])
+    {
+      $_SESSION['login'] = $_POST['login']; //write login to server storage
+      setcookie ("username",$_POST["login"],time()+ 3600);
+      setcookie ("password",$_POST["password"],time()+ 3600);
+      header('Location: /shippingProject/index.php'); //redirect to main
+    }
+  }
+  else
+  {
+    echo "<script>alert('Wrong login or password');</script>";
+    echo "<noscript>Wrong login or password</noscript>";
+  }
+}else{
+  echo "<script>alert('UserName and password field required');</script>";
+}
 ?>
 
 
@@ -62,24 +51,24 @@ require("connection.php");
 
                     <h1 class="auth-title mb-5">Log in.</h1>
                     <?php if(isset($_SESSION['error'])){ echo $_SESSION['error']; }?>
-                    <form action="" method="POST">
+                    <form action="login.php" method="POST">
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="text" class="form-control form-control-xl" placeholder="example@gmail.com"
-                                name="user_email">
+                                name="login">
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>
                         </div>
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="password" class="form-control form-control-xl" placeholder="Password"
-                                name="user_password">
+                                name="password">
                             <div class="form-control-icon">
                                 <i class="bi bi-shield-lock"></i>
                             </div>
                         </div>
 
-                        <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" type="submit" name="login">Log
-                            in</button>
+                        <input type="submit" class="btn btn-success">
+
                     </form>
 
                 </div>

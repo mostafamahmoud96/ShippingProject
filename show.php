@@ -4,7 +4,7 @@ session_start();
 <div class="row">
     <div class="col-12">
         <?php
-        if ($_GET['sub'] == 'showItem') {
+        if ($_GET['sub'] == 'item') {
             $item = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `shipped_items` WHERE `id` = $_GET[id]"));
             $retail = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `retail_center` WHERE `id`= $item[retail_center_id]"));
         ?>
@@ -76,46 +76,9 @@ session_start();
                 </ul>
 
             </div>
+      
         <?php
-        } elseif ($_GET['sub'] == 'showTrans') {
-            $trans = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `transportation_events` WHERE `id` = $_GET[id]"));
-
-        ?>
-            <div class="card ">
-                <div class="card-header ">
-                </div>
-                <div class="card-content " style="margin-left: 5%;">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            SHOW DATA
-                            <?php
-                            // echo $item['name'] ;
-                            ?>
-                        </h5>
-
-                    </div>
-                </div>
-                <ul class="list-group list-group-flush">
-
-                    <li class="list-group-item">Type:
-                        <span style="color: black;"> <?php
-                                                        echo $trans['type']
-                                                        ?>
-                        </span>
-                    </li>
-
-                    <li class="list-group-item">Route:
-                        <span style="color: black;"> <?php
-                                                        echo $trans['delivery_route']
-                                                        ?>
-                        </span>
-                    </li>
-
-                </ul>
-
-            </div>
-        <?php
-        } elseif ($_GET['sub'] == 'showRetail') {
+        } elseif ($_GET['sub'] == 'retail') {
             $retail = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `retail_center` WHERE `id` = $_GET[id]"));
 
         ?>

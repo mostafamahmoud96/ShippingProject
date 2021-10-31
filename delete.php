@@ -2,7 +2,6 @@
 session_start();
 include("connection.php");
 
-// echo $_GET['id'];
 if ($_GET['sub']== 'deleteItem')
 {
     $sql = "DELETE FROM shipped_items ";
