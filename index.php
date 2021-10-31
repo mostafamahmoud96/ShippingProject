@@ -50,7 +50,7 @@ require_once "connection.php";
 
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="<?php echo '?sub=track&title=list';?>" class='sidebar-link'>
+                            <a href="<?php echo '?title=list&sub=track';?>" class='sidebar-link'>
                                 <i class="bi bi-collection-fill"></i>
                                 <span>Track Shipped items</span>
                             </a>
