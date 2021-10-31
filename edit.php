@@ -2,18 +2,17 @@
 <html lang="en">
 
 <head>
-
     <?php
     session_start();
-
-
     ?>
 </head>
 
 <body>
     <div id="app">
         <?php
-        if ($_GET['sub'] == 'editItem') {
+        if ($_GET['sub'] == 'item') {
+
+
             $item = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `shipped_items` WHERE `id` = $_GET[id]"));
             $all_retail = mysqli_query($conn, "SELECT * FROM `retail_center`");
             $retail = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `retail_center` WHERE `id`= $item[retail_center_id]"));
@@ -142,34 +141,84 @@
                     </div>
                 </div>
             </div>
+            <?php
+            function is_blank($value)
+            {
+                return !isset($value) || trim($value) === '';
+            }
+            ?>
         <?php
             if (isset($_POST['edit'])) {
-                $item_id = $_POST['item_id'];
-                $item_name = $_POST['item_name'];
-                $retail_id = $_POST['retail_id'];
-                $weight = $_POST['weight'];
-                $dimension = $_POST['dimension'];
-                $destination = $_POST['destination'];
-                $delivered_at = $_POST['delivered_at'];
-                $insurance_amount = $_POST['insurance_amount'];
+                $errors =[] ;
+ 
+ 
+   if(is_blank($_POST['item_name'])) 
+   {
+       $errors[] = "Name cannot be Blank"; 
 
-                $query = mysqli_query($conn, "UPDATE `shipped_items` SET 
-                    `retail_center_id`=$retail_id,`name`='$item_name',`weight`=$weight,`dimension`='$dimension',`final_delivery_date`='$delivered_at',
-                    `destination`='$destination',`insurance_amount`=$insurance_amount WHERE `id`=$item_id
-                    ");
-               if ($query) {
+   }
+   elseif(is_blank($_POST['retail_id']) )
+   {
+    $errors[] = "Retail name cannot be Blank"; 
 
-                echo "<script>alert('message send succesfully')</script>";
-                // header("location://javascript:history.go(-1)()");
-                // header("Location: {$_SERVER["HTTP_REFERER"]}");
-                // header("location:javascript://history.go(-1)");
-            }
-        }
+   }
+   elseif(is_blank($_POST['weight']))
+   {
+    $errors[] = "Weight cannot be Blank"; 
+
+   }
+   elseif(is_blank($_POST['dimension']))
+   {
+    $errors[] = "dimension cannot be Blank"; 
+
+   }
+   elseif(is_blank($_POST['destination']))
+   {
+    $errors[] = "destination cannot be Blank"; 
+
+   }
+   elseif(is_blank($_POST['delivered_at']))
+   {
+    $errors[] = "delivered location cannot be Blank"; 
+
+   }
+   elseif(  is_blank($_POST['insurance_amount']) )
+   {
+    $errors[] = "insurance amount cannot be Blank"; 
+
+   }
+   else {
+
+       $item_id = $_POST['item_id'];
+       $item_name = $_POST['item_name'];
+       $retail_id = $_POST['retail_id'];
+       $weight = $_POST['weight'];
+       $dimension = $_POST['dimension'];
+       $destination = $_POST['destination'];
+       $delivered_at = $_POST['delivered_at'];
+       $insurance_amount = $_POST['insurance_amount'];
+    
+       $query = mysqli_query($conn, "UPDATE `shipped_items` SET 
+           `retail_center_id`=$retail_id,`name`='$item_name',`weight`=$weight,`dimension`='$dimension',`final_delivery_date`='$delivered_at',
+           `destination`='$destination',`insurance_amount`=$insurance_amount WHERE `id`=$item_id
+           ");
+         
+      if ($query) {
+
+          echo "<script>alert('message send succesfully')</script>";
+          header("location:index.php?id=' ". $item['id'] ."' &title=edit&sub=editItem");   
+       // header("location://javascript:history.go(-1)()");
+       // header("Location: {$_SERVER["HTTP_REFERER"]}");
+       // header("location:javascript://history.go(-1)");
+    }
+    }
+   }
+  
     }
     ?>
 
 <?php        
-        if ($_GET['sub'] == 'editTrans') {
+        if ($_GET['sub'] == 'trans_event') {
             $trans = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `transportation_events` WHERE `id` = $_GET[id]"));
             $all_event = mysqli_query($conn, "SELECT DISTINCT `type` FROM `transportation_events`");
         ?>
@@ -246,7 +295,7 @@
 ?>
 
 <?php
-if ($_GET['sub'] == 'editRetail') {
+if ($_GET['sub'] == 'retail') {
     $retail = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `retail_center` WHERE `id` = $_GET[id]"));
     $all_retail = mysqli_query($conn, "SELECT DISTINCT `type` FROM `retail_center`");
 ?>
