@@ -243,6 +243,7 @@ if ($_GET['sub'] == 'track') {
                         // to get shipping item data
                         $query = "SELECT * FROM `shipped_items` ";
                         $query .= "where `id` = $track[item_id]";
+                        // echo $query ;
                         $query_result = mysqli_query($conn, $query);
                         $query_fetch = mysqli_fetch_array($query_result);
 
@@ -282,7 +283,7 @@ if ($_GET['sub'] == 'track') {
                             class="btn-sm icon icon-left btn-warning" style="margin-right: 2%;"><i
                                 data-feather="alert-triangle"></i>
                             Edit</a>
-                        <a href="<?php echo '?id=' . $track['id'] . '&title=delete&sub=Track'; ?> "
+                        <a href="<?php echo '?id=' . $track['id'] . '&title=delete&sub=track'; ?> "
                             class="btn-sm icon icon-left btn-danger" style="margin-right: 2%;"><i
                                 data-feather="alert-circle"></i>
                             Delete</a>

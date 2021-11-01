@@ -16,10 +16,6 @@ elseif ($_GET['sub'] == 'trans'){
     $sql .= "WHERE id='" . $_GET['id'] . "' ";
     $sql .= "LIMIT 1";
     $result = mysqli_query($conn, $sql);
-    if($result)
-    {
-        echo "askldn";
-    }
     echo "<script>window.location.href='http://localhost/ShippingProject/?sub=trans&title=list';</script>";
 
 }
@@ -27,15 +23,14 @@ elseif($_GET['sub'] == 'retails'){
     $sql = "DELETE FROM retail_center ";
     $sql .= "WHERE id='" . $_GET['id'] . "' ";
     $sql .= "LIMIT 1";
+    echo $sql ; 
     $result = mysqli_query($conn, $sql);
-    echo "<script>window.location.href='http://localhost/ShippingProject/?sub=retails&title=list';</script>";
+     echo "<script>window.location.href='http://localhost/ShippingProject/?sub=retails&title=list';</script>";
 
-} elseif ($_GET['sub'] == 'Track') {
-    // echo $_GET['id'];
+} elseif ($_GET['sub'] == 'track') {
     $sql = "DELETE FROM item_transportation ";
     $sql .= "WHERE id='" . $_GET['id'] . "' ";
     $sql .= "LIMIT 1";
-    // echo $sql ;
     $result = mysqli_query($conn, $sql);
     echo "<script>window.location.href='http://localhost/ShippingProject/?title=list&sub=track';</script>";
 }

@@ -5,12 +5,12 @@ session_start();
 require_once "connection.php";
 
 if (!isset($_COOKIE['username']) || !isset($_COOKIE['password'])) {
-    header('Location: /shippingProject/login.php');
+    header('Location: /ShippingProject/login.php');
     exit;
 } elseif (!isset($_SESSION['login'])) {
     header('Location: /ShippingProject/login.php');
     exit;
-}
+}   
 
 ?>
 <!DOCTYPE html>

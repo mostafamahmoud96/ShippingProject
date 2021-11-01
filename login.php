@@ -13,13 +13,15 @@ if (isset($_POST['login']) && isset($_POST['password']) && $_POST['login'] != ''
             setcookie("password", $_POST["password"], time() + 3600);
             header('Location: /ShippingProject/index.php'); //redirect to main
         }
+        
     } else {
-       echo '<div class="alert alert-danger alert-dismissible show fade">
+        echo '<div class="alert alert-danger alert-dismissible show fade">
         Wrong Email or password.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>';
     }
 } 
+
 ?>
 
 
@@ -29,7 +31,6 @@ if (isset($_POST['login']) && isset($_POST['password']) && $_POST['login'] != ''
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <title>Login - Mazer Admin Dashboard</title> -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
