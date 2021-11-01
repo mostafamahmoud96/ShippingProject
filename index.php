@@ -1,16 +1,15 @@
 <?php
+
 session_start();
 
 require_once "connection.php";
 
-if (!isset($_COOKIE['username']) || !isset($_COOKIE['password'])  ) {
-	header('Location: /shippingProject/login.php');
-	 exit;
-} elseif (!isset($_SESSION['login'])) 
-{
+if (!isset($_COOKIE['username']) || !isset($_COOKIE['password'])) {
     header('Location: /shippingProject/login.php');
-	 exit;
-
+    exit;
+} elseif (!isset($_SESSION['login'])) {
+    header('Location: /shippingProject/login.php');
+    exit;
 }
 
 ?>
@@ -41,27 +40,27 @@ if (!isset($_COOKIE['username']) || !isset($_COOKIE['password'])  ) {
                     <ul class="menu">
                         <!-- <li class="sidebar-title">Menu</li> -->
                         <li class="sidebar-item">
-                            <a href="<?php echo '?sub=items&title=list';?>" class='sidebar-link'>
+                            <a href="<?php echo '?sub=items&title=list'; ?>" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Shipped Items</span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="<?php echo '?sub=trans&title=list';?>" class='sidebar-link'>
+                            <a href="<?php echo '?sub=trans&title=list'; ?>" class='sidebar-link'>
                                 <i class="bi bi-stack"></i>
                                 <span>Transportation Events</span>
                             </a>
 
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="<?php echo '?sub=retails&title=list';?>" class='sidebar-link'>
+                            <a href="<?php echo '?sub=retails&title=list'; ?>" class='sidebar-link'>
                                 <i class="bi bi-collection-fill"></i>
                                 <span>Retails Centers</span>
                             </a>
 
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="<?php echo '?title=list&sub=track';?>" class='sidebar-link'>
+                            <a href="<?php echo '?title=list&sub=track'; ?>" class='sidebar-link'>
                                 <i class="bi bi-collection-fill"></i>
                                 <span>Track Shipped items</span>
                             </a>
@@ -82,8 +81,15 @@ if (!isset($_COOKIE['username']) || !isset($_COOKIE['password'])  ) {
                         <div class="col-12" id="page-content">
 
 
+
+                            <h1>
+                                Welcome To UPS Shipping System
+
+                            </h1>
+
+
                             <?php
-                     
+
                             include "$_GET[title].php";
                             // include "list.php";
 

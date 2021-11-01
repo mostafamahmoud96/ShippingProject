@@ -2,17 +2,13 @@
 <html lang="en">
 
 <head>
-
     <?php
     session_start();
-
-
     ?>
 </head>
 
 <body>
     <div id="app">
-
         <?php
         if ($_GET['sub'] == 'trans_event') {
             $trans = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `transportation_events` WHERE `id` = $_GET[id]"));
@@ -37,17 +33,9 @@
                 }
                 if ($err_type_trans == 1 && $err_route == 1) {
                     $query = mysqli_query($conn, "UPDATE `transportation_events` SET `type`='$trans_type',`delivery_route`='$route' WHERE `id`=$trans_id");
-
-                    echo "<script>alert('message send succesfully')</script>";
                 }
-
                 if ($query) {
-                    session_start();
-                    $_SESSION['success'] = "update successsfully";
-
-                    header("location:index.php?sub=trans&title=list");
-                    // header("Location: {$_SERVER["HTTP_REFERER"]}");
-                    // header("location:javascript://history.go(-1)");
+                    echo "<script>window.location.href='http://localhost/ShippingProject/?sub=trans&title=list';</script>";
                 }
             }
 
@@ -167,8 +155,6 @@
                             </div>
                         </div>
                     </div>
-
-
                     <div class="col-md-4">
                         <label>Address:</label>
                     </div>
@@ -199,11 +185,11 @@
                 $retail_name = $_POST['retail_name'];
                 $retail_type = $_POST['retail_type'];
                 $address = $_POST['address'];
-
                 $query = mysqli_query($conn, "UPDATE `retail_center` SET `name`='$retail_name',`type`='$retail_type',`address`='$address' WHERE `id`=$retail_id");
                 if ($query) {
-
-                    echo "<script>alert('message send succesfully')</script>";
+                    echo "kkk";
+                    echo "<script>window.location.href='http://localhost/ShippingProject/?sub=retails&title=list';</script>";
+                    // echo "<script>alert('message send succesfully')</script>";
                     // header("location://javascript:history.go(-1)()");
                     // header("Location: {$_SERVER["HTTP_REFERER"]}");
                     // header("location:javascript://history.go(-1)");
@@ -281,9 +267,7 @@ if ($_GET['sub'] == 'item') {
             // echo $query ;
         }
         if ($query) {
-
-            echo "<script>alert('message send succesfully')</script>";
-            header("location:index.php?sub=items&title=list");
+                echo "<script>window.location.href='http://localhost/ShippingProject/?sub=items&title=list';</script>";
             // header("location://javascript:history.go(-1)()");
             // header("Location: {$_SERVER["HTTP_REFERER"]}");
         }

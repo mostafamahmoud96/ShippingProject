@@ -18,7 +18,7 @@
 
 $servername = "localhost";
 $username = "root";
-$password = "root";
+$password = "admin";
 $dbname = "shipping";
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

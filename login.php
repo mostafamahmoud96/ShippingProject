@@ -17,11 +17,8 @@ if (isset($_POST['login']) && isset($_POST['password']) && $_POST['login'] != ''
         }
     } else {
         echo "<script>alert('Wrong login or password');</script>";
-        echo "<noscript>Wrong login or password</noscript>";
     }
-} else {
-    echo "<script>alert('UserName and password field required');</script>";
-}
+} 
 ?>
 
 
