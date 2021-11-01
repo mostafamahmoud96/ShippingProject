@@ -37,8 +37,7 @@
                 if ($query) {
                     echo "<script>window.location.href='http://localhost/ShippingProject/?sub=trans&title=list';</script>";
                     session_start();
-                    $_SESSION['success'] = "Transportation Event Updated successfully";
-
+                    $_SESSION['success'] = "Updated successfully";
                 }
             }
 
@@ -82,7 +81,7 @@
                                         <input type="text" class="form-control" name="route" value="<?php echo $trans['delivery_route'] ?>">
                                         <p class="err_msg">
                                             <?php
-                                            
+
                                             if ($err_route != 1) {
                                                 echo $err_route;
                                             } ?>
@@ -126,10 +125,7 @@
                         <div class="form-group has-icon-left">
                             <div class="position-relative">
                                 <input type="text" class="form-control" name="retail_name" value="<?php echo $retail['name']; ?>">
-                                <div class="form-control-icon">
 
-                                    <i class="bi bi-person"></i>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -159,9 +155,7 @@
                         <div class="form-group has-icon-left">
                             <div class="position-relative">
                                 <input type="text" class="form-control" name="address" value="<?php echo $retail['address'] ?>">
-                                <div class="form-control-icon">
-                                    <i class="bi bi-person"></i>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -183,12 +177,9 @@
                 $address = $_POST['address'];
                 $query = mysqli_query($conn, "UPDATE `retail_center` SET `name`='$retail_name',`type`='$retail_type',`address`='$address' WHERE `id`=$retail_id");
                 if ($query) {
-                    echo "kkk";
                     echo "<script>window.location.href='http://localhost/ShippingProject/?sub=retails&title=list';</script>";
-                    // echo "<script>alert('message send succesfully')</script>";
-                    // header("location://javascript:history.go(-1)()");
-                    // header("Location: {$_SERVER["HTTP_REFERER"]}");
-                    // header("location:javascript://history.go(-1)");
+                    session_start();
+                    $_SESSION['success'] = "Updated Successfully";
                 }
             }
         }
@@ -263,9 +254,9 @@ if ($_GET['sub'] == 'item') {
             // echo $query ;
         }
         if ($query) {
-                echo "<script>window.location.href='http://localhost/ShippingProject/?sub=items&title=list';</script>";
-            // header("location://javascript:history.go(-1)()");
-            // header("Location: {$_SERVER["HTTP_REFERER"]}");
+            echo "<script>window.location.href='http://localhost/ShippingProject/?sub=items&title=list';</script>";
+            session_start();
+            $_SESSION['success'] = "Updated Successfully";
         }
     }
 
@@ -296,10 +287,7 @@ if ($_GET['sub'] == 'item') {
                                                 echo $err_name;
                                             } ?>
                                         </p>
-                                        <div class="form-control-icon">
 
-                                            <i class="bi bi-person"></i>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -343,9 +331,7 @@ if ($_GET['sub'] == 'item') {
                                         if ($err_weight != 1) {
                                             echo $err_weight;
                                         } ?>
-                                        <div class="form-control-icon">
-                                            <i class="bi bi-person"></i>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -362,9 +348,7 @@ if ($_GET['sub'] == 'item') {
                                         if ($err_dimension != 1) {
                                             echo $err_dimension;
                                         } ?>
-                                        <div class="form-control-icon">
-                                            <i class="bi bi-person"></i>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -381,9 +365,7 @@ if ($_GET['sub'] == 'item') {
                                             echo $err_destination;
                                         } ?>
 
-                                        <div class="form-control-icon">
-                                            <i class="bi bi-person"></i>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -399,9 +381,7 @@ if ($_GET['sub'] == 'item') {
                                         if ($err_delivered != 1) {
                                             echo $err_delivered;
                                         } ?>
-                                        <div class="form-control-icon">
-                                            <i class="bi bi-person"></i>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -417,9 +397,7 @@ if ($_GET['sub'] == 'item') {
                                         if ($err_amount != 1) {
                                             echo $err_amount;
                                         } ?>
-                                        <div class="form-control-icon">
-                                            <i class="bi bi-person"></i>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -462,14 +440,16 @@ if ($_GET['sub'] == 'track') {
             $err_trans = true;
         }
         if ($err_name == 1 && $err_trans == 1) {
-
-
-            header("location:index.php?title=list&sub=track");
             $sql = "UPDATE `item_transportation` ";
             $sql .= "SET `item_id`=$item,`transportation_id`=$trans ";
             $sql .= "WHERE `id` = $_GET[id]";
             // echo $sql;
             $result = mysqli_query($conn, $sql);
+        }
+        if ($result) {
+            echo "<script>window.location.href='http://localhost/ShippingProject/?sub=track&title=list';</script>";
+            session_start();
+            $_SESSION['success'] = "Updated Successfully";
         }
     }
 

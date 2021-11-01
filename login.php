@@ -1,8 +1,6 @@
 <?php
-//login.php
     session_start();
 require("connection.php");
-// require("session.php");
 if (isset($_POST['login']) && isset($_POST['password']) && $_POST['login'] != '' && $_POST['password'] != '') //when form submitted
 {
 
@@ -16,7 +14,10 @@ if (isset($_POST['login']) && isset($_POST['password']) && $_POST['login'] != ''
             header('Location: /ShippingProject/index.php'); //redirect to main
         }
     } else {
-        echo "<script>alert('Wrong login or password');</script>";
+       echo '<div class="alert alert-danger alert-dismissible show fade">
+        Wrong Email or password.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';
     }
 } 
 ?>
