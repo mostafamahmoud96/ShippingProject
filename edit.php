@@ -2,23 +2,19 @@
 <html lang="en">
 
 <head>
-
     <?php
     session_start();
-
-
     ?>
 </head>
 
 <body>
     <div id="app">
-
         <?php
         if ($_GET['sub'] == 'trans_event') {
             $trans = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `transportation_events` WHERE `id` = $_GET[id]"));
             $all_event = mysqli_query($conn, "SELECT DISTINCT `type` FROM `transportation_events`");
         ?>
-        <?php
+            <?php
             if (isset($_POST['edit'])) {
                 $trans_id = $_POST['trans_id'];
                 $trans_type = $_POST['trans_type'];
@@ -37,87 +33,79 @@
                 }
                 if ($err_type_trans == 1 && $err_route == 1) {
                     $query = mysqli_query($conn, "UPDATE `transportation_events` SET `type`='$trans_type',`delivery_route`='$route' WHERE `id`=$trans_id");
-
-                    echo "<script>alert('message send succesfully')</script>";
                 }
-
                 if ($query) {
+                    echo "<script>window.location.href='http://localhost/ShippingProject/?sub=trans&title=list';</script>";
                     session_start();
-                    $_SESSION['success'] = "update successsfully";
+                    $_SESSION['success'] = "Transportation Event Updated successfully";
 
-                    header("location:index.php?sub=trans&title=list");
-                    // header("Location: {$_SERVER["HTTP_REFERER"]}");
-                    // header("location:javascript://history.go(-1)");
                 }
             }
 
             ?>
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Edit Transportation Event Data</h4>
-            </div>
-            <div class="card-content">
-                <div class="card-body">
-                    <form class="form form-horizontal" method="post" action="">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Edit Transportation Event Data</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <form class="form form-horizontal" method="post" action="">
 
-                        <div class="col-md-4">
-                            <label>Type</label>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="form-group has-icon-left">
-                                <div class="position-relative">
-                                    <input type="hidden" value="<?php echo $trans['id'] ?>" name="trans_id">
-                                    <select class="form-select control" id="TransSelect" name="trans_type">
-                                        <?php
+                            <div class="col-md-4">
+                                <label>Type</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input type="hidden" value="<?php echo $trans['id'] ?>" name="trans_id">
+                                        <select class="form-select control" id="TransSelect" name="trans_type">
+                                            <?php
                                             while ($one_event = mysqli_fetch_array($all_event)) {
                                             ?>
-                                        <option value="<?php echo $one_event['type']; ?>"
-                                            <?php if ($one_event['type'] == $trans['type']) { ?>selected="selected"
-                                            <?php } ?>><?php echo $one_event['type'] ?></option>
-                                        <?php
+                                                <option value="<?php echo $one_event['type']; ?>" <?php if ($one_event['type'] == $trans['type']) { ?>selected="selected" <?php } ?>><?php echo $one_event['type'] ?></option>
+                                            <?php
                                             }
                                             ?>
-                                    </select>
+                                        </select>
 
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-4">
-                            <label>Route:</label>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="form-group has-icon-left">
-                                <div class="position-relative">
-                                    <input type="text" class="form-control" name="route"
-                                        value="<?php echo $trans['delivery_route'] ?>">
-                                    <p class="err_msg">
-                                        <?php
-                                            // echo (!$err_name == 1);
-                                            if ($err_route != 1) {
-                                                echo $err_route;
-                                            } ?>
-                                    </p>
-                                    <div class="form-control-icon">
-                                        <i class="bi bi-person"></i>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-12 d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary me-1 mb-1" name="edit">Edit</button>
 
-                        </div>
+                            <div class="col-md-4">
+                                <label>Route:</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group has-icon-left">
+                                    <div class="position-relative">
+                                        <input type="text" class="form-control" name="route" value="<?php echo $trans['delivery_route'] ?>">
+                                        <p class="err_msg">
+                                            <?php
+                                            
+                                            if ($err_route != 1) {
+                                                echo $err_route;
+                                            } ?>
+                                        </p>
+                                        <div class="form-control-icon">
+                                            <i class="bi bi-person"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary me-1 mb-1" name="edit">Edit</button>
+
+                            </div>
+                    </div>
+                    </form>
                 </div>
-                </form>
             </div>
-        </div>
     </div>
 
 
-    <?php
+<?php
         }
         if ($_GET['sub'] == 'retail') {
             $retail = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `retail_center` WHERE `id` = $_GET[id]"));
@@ -137,8 +125,7 @@
                     <div class="col-md-8">
                         <div class="form-group has-icon-left">
                             <div class="position-relative">
-                                <input type="text" class="form-control" name="retail_name"
-                                    value="<?php echo $retail['name']; ?>">
+                                <input type="text" class="form-control" name="retail_name" value="<?php echo $retail['name']; ?>">
                                 <div class="form-control-icon">
 
                                     <i class="bi bi-person"></i>
@@ -156,27 +143,22 @@
                                     <?php
                                     while ($one_retail = mysqli_fetch_array($all_retail)) {
                                     ?>
-                                    <option value="<?php echo $one_retail['type']; ?>"
-                                        <?php if ($one_retail['type'] == $retail['type']) { ?>selected="selected"
-                                        <?php } ?>><?php echo $one_retail['type'] ?>
-                                    </option>
-                                    < <?php
+                                        <option value="<?php echo $one_retail['type']; ?>" <?php if ($one_retail['type'] == $retail['type']) { ?>selected="selected" <?php } ?>><?php echo $one_retail['type'] ?>
+                                        </option>
+                                        < <?php
                                         }
                                             ?> </select>
 
                             </div>
                         </div>
                     </div>
-
-
                     <div class="col-md-4">
                         <label>Address:</label>
                     </div>
                     <div class="col-md-8">
                         <div class="form-group has-icon-left">
                             <div class="position-relative">
-                                <input type="text" class="form-control" name="address"
-                                    value="<?php echo $retail['address'] ?>">
+                                <input type="text" class="form-control" name="address" value="<?php echo $retail['address'] ?>">
                                 <div class="form-control-icon">
                                     <i class="bi bi-person"></i>
                                 </div>
@@ -193,17 +175,17 @@
         </div>
     </div>
     </div>
-    <?php
+<?php
             if (isset($_POST['edit'])) {
                 $retail_id = $_POST['retail_id'];
                 $retail_name = $_POST['retail_name'];
                 $retail_type = $_POST['retail_type'];
                 $address = $_POST['address'];
-
                 $query = mysqli_query($conn, "UPDATE `retail_center` SET `name`='$retail_name',`type`='$retail_type',`address`='$address' WHERE `id`=$retail_id");
                 if ($query) {
-
-                    echo "<script>alert('message send succesfully')</script>";
+                    echo "kkk";
+                    echo "<script>window.location.href='http://localhost/ShippingProject/?sub=retails&title=list';</script>";
+                    // echo "<script>alert('message send succesfully')</script>";
                     // header("location://javascript:history.go(-1)()");
                     // header("Location: {$_SERVER["HTTP_REFERER"]}");
                     // header("location:javascript://history.go(-1)");
@@ -212,7 +194,7 @@
         }
 ?>
 
-    <?php
+<?php
 
 if ($_GET['sub'] == 'item') {
     $item = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `shipped_items` WHERE `id` = $_GET[id]"));
@@ -281,9 +263,7 @@ if ($_GET['sub'] == 'item') {
             // echo $query ;
         }
         if ($query) {
-
-            echo "<script>alert('message send succesfully')</script>";
-            header("location:index.php?sub=items&title=list");
+            echo "<script>window.location.href='http://localhost/ShippingProject/?sub=items&title=list';</script>";
             // header("location://javascript:history.go(-1)()");
             // header("Location: {$_SERVER["HTTP_REFERER"]}");
         }
@@ -308,8 +288,7 @@ if ($_GET['sub'] == 'item') {
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
                                         <input type="hidden" name="item_id" value="<?php echo $item['id'] ?>">
-                                        <input type="text" class="form-control" name="item_name"
-                                            value="<?php echo $item['name']; ?>">
+                                        <input type="text" class="form-control" name="item_name" value="<?php echo $item['name']; ?>">
                                         <p class="err_msg">
                                             <?php
                                             // echo (!$err_name == 1);
@@ -337,13 +316,11 @@ if ($_GET['sub'] == 'item') {
                                             <?php
                                             while ($one_retail = mysqli_fetch_array($all_retail)) {
                                             ?>
-                                            <option value="<?php echo $one_retail['id']; ?>"
-                                                <?php if ($one_retail['id'] == $retail['id']) { ?>selected="selected"
-                                                <?php } ?>><?php echo $one_retail['name'] ?></option>
-                                            < <?php
+                                                <option value="<?php echo $one_retail['id']; ?>" <?php if ($one_retail['id'] == $retail['id']) { ?>selected="selected" <?php } ?>><?php echo $one_retail['name'] ?></option>
+                                                < <?php
                                                 }
                                                     ?> </select>
-                                                <?php
+                                                    <?php
                                                     // echo (!$err_name == 1);
                                                     if ($err_retail != 1) {
                                                         echo $err_retail;
@@ -360,8 +337,7 @@ if ($_GET['sub'] == 'item') {
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <input type="text" class="form-control" name="weight"
-                                            value="<?php echo $item['weight'] ?>">
+                                        <input type="text" class="form-control" name="weight" value="<?php echo $item['weight'] ?>">
                                         <?php
                                         // echo (!$err_name == 1);
                                         if ($err_weight != 1) {
@@ -380,8 +356,7 @@ if ($_GET['sub'] == 'item') {
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <input type="text" class="form-control" name="dimension"
-                                            value="<?php echo $item['dimension'] ?>">
+                                        <input type="text" class="form-control" name="dimension" value="<?php echo $item['dimension'] ?>">
                                         <?php
                                         // echo (!$err_name == 1);
                                         if ($err_dimension != 1) {
@@ -399,8 +374,7 @@ if ($_GET['sub'] == 'item') {
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <input type="text" class="form-control" name="destination"
-                                            value="<?php echo $item['destination'] ?>">
+                                        <input type="text" class="form-control" name="destination" value="<?php echo $item['destination'] ?>">
                                         <?php
                                         // echo (!$err_name == 1);
                                         if ($err_destination != 1) {
@@ -419,8 +393,7 @@ if ($_GET['sub'] == 'item') {
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <input type="date" class="form-control" name="delivered_at"
-                                            value="<?php echo $item['final_delivery_date'] ?>">
+                                        <input type="date" class="form-control" name="delivered_at" value="<?php echo $item['final_delivery_date'] ?>">
                                         <?php
                                         // echo (!$err_name == 1);
                                         if ($err_delivered != 1) {
@@ -438,8 +411,7 @@ if ($_GET['sub'] == 'item') {
                             <div class="col-md-8">
                                 <div class="form-group has-icon-left">
                                     <div class="position-relative">
-                                        <input type="text" class="form-control" name="insurance_amount"
-                                            value="<?php echo $item['insurance_amount'] ?>">
+                                        <input type="text" class="form-control" name="insurance_amount" value="<?php echo $item['insurance_amount'] ?>">
                                         <?php
                                         // echo (!$err_name == 1);
                                         if ($err_amount != 1) {
@@ -462,109 +434,155 @@ if ($_GET['sub'] == 'item') {
         </div>
     </div>
 
-    <?php
+<?php
 }
 if ($_GET['sub'] == 'track') {
-    $shipped_item = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM  shipped_items where  id=$_GET[id]")); //
-    $event = mysqli_query($conn, "SELECT  * FROM transportation_events ");
-    $pivot = mysqli_fetch_array(mysqli_query($conn, "SELECT   * FROM item_transportations where  item_id=$_GET[id]"));
+    $order_sql = "SELECT * FROM `item_transportation`";
+    $order_sql .= " WHERE `id` = $_GET[id]";
+    $order_result = mysqli_query($conn, $order_sql);
+    $order_fetch = mysqli_fetch_array($order_result);
+    // echo $order_sql;
+    // echo $order_result['transportation_id'];
+
+
+    if (isset($_POST['add'])) {
+        $item = $_POST['item'];
+        $trans = $_POST['trans'];
+        $id = $_POST['id'];
+
+        if (empty($item)) {
+            $err_name = 'Please Select Shipping Item';
+        } else {
+            $err_name = true;
+        }
+
+        if (empty($trans)) {
+            $err_trans = 'Please Select Transportation Type';
+        } else {
+            $err_trans = true;
+        }
+        if ($err_name == 1 && $err_trans == 1) {
+
+
+            header("location:index.php?title=list&sub=track");
+            $sql = "UPDATE `item_transportation` ";
+            $sql .= "SET `item_id`=$item,`transportation_id`=$trans ";
+            $sql .= "WHERE `id` = $_GET[id]";
+            // echo $sql;
+            $result = mysqli_query($conn, $sql);
+        }
+    }
+
+    $item_query = "SELECT * FROM  shipped_items";
+    $item_result = mysqli_query($conn, $item_query);
+    $trans_query = "SELECT  * FROM transportation_events";
+    $trans_result = mysqli_query($conn, $trans_query);
+
 ?>
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">Edit trans Data</h4>
+            <h4 class="card-title">Edit Track order </h4>
         </div>
         <div class="card-content">
             <div class="card-body">
-                <form class="form form-horizontal" method="post" action="<?php //header("Location: index.php?title=list&sub=items"); 
-                                                                            ?>">
-                    <div class="form-body">
-                        <div class="row">
-                            <!-- <div class="col-md-4"> -->
-
-
-                            <div class="col-md-4">
-                                <label>Item</label>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-group has-icon-left">
-                                    <div class="position-relative">
-                                        <input type="text" class="form-control" name="item"
-                                            value="<?php echo $shipped_item['name'] ?>" readonly>
-                                        <!-- <select class="form-select control" id="item" name="item">
-                                            <?php
-                                            //  while ($items = mysqli_fetch_array($shipped_item)) {
-                                            ?>
-                                            <option value="<?php // echo $items['id']; 
-                                                            ?>"
-                                                <?php //if ($items['id'] == $pivot['item_id']) { 
-                                                ?>selected="selected"
-                                                <?php //} 
-                                                ?>><?php //echo $items['name'] 
-                                                    ?></option>
-                                            <?php //} 
-                                            ?>
-                                        </select> -->
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <label>Route</label>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-group has-icon-left">
-                                    <div class="position-relative">
-                                        <select class="form-select control" id="event" name="transports[]" multiple>
-                                            <?php
-                                            while ($trans_events = mysqli_fetch_array($event)) {
-                                            ?>
-                                            <option value="<?php echo $trans_events['id']; ?>"
-                                                <?php if ($trans_events['id'] == $pivot['transportation_id']) { ?>selected="selected"
-                                                <?php } ?>><?php echo $trans_events['type'] ?></option>
-                                            <?php
-                                            }
-                                            ?>
-                                        </select>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-12 d-flex justify-content-end">
-                                <button type="submit" class="btn btn-primary me-1 mb-1" name="edit">Edit</button>
-
+                <form class="form form-horizontal" method="post" action="">
+                    <div class="col-md-4">
+                        <label> Shipping Order Number</label>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group has-icon-left">
+                            <div class="position-relative">
+                                <input type="text" class="form-control" name="id" value="<?php echo $_GET['id'] ?>" readonly>
                             </div>
                         </div>
-                </form>
+                    </div>
+
+
+                    <div class='row' id="row">
+                        <div class="col-md-6">
+                            <label>Item</label>
+
+                            <div class="form-group has-icon-left">
+                                <div class="position-relative">
+                                    <select class="form-select control" id="RetailSelect" name="item">
+                                        <option value="" disabled selected>Choose One</option>
+                                        <?php
+                                        foreach ($item_result as $item) {
+                                        ?>
+                                            <option value="<?php echo $item['id']; ?>" <?php
+
+                                                                                        if ($item['id'] == $order_fetch['item_id']) {
+                                                                                        ?> selected="selected" <?php
+                                                                                                            }
+                                                                                                                ?>><?php echo $item['name'] ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                    <p class="err_msg">
+                                        <?php
+                                        // echo (!$err_name == 1);
+                                        if ($err_name != 1) {
+                                            echo $err_name;
+                                        } ?>
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Transportaion / Route</label>
+
+                            <div class="form-group has-icon-left">
+                                <div class="position-relative">
+                                    <select class="form-select control" id="RetailSelect" name="trans">
+                                        <option value="" disabled selected>Choose One</option>
+                                        <?php
+                                        foreach ($trans_result as $trans) {
+                                        ?>
+                                            <option value="<?php echo $trans['id']; ?>" <?php
+
+                                                                                        if ($trans['id'] == $order_fetch['transportation_id']) {
+                                                                                        ?> selected="selected" <?php
+                                                                                                            }
+                                                                                                                ?>>
+                                                <?php echo $trans['type'] . "/" . $trans['delivery_route'] ?></option>
+                                        <?php
+
+                                        }
+                                        ?>
+                                    </select>
+                                    <p class="err_msg">
+                                        <?php
+                                        // echo (!$err_name == 1);
+                                        if ($err_trans != 1) {
+                                            echo $err_trans;
+                                        } ?>
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+            <hr>
+            <?php
+            //  }
+            ?>
+
+            <div class="col-12 d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary me-1 mb-1" name="add">Update Shipping</button>
+
             </div>
         </div>
+        </form>
     </div>
-    <?php
-    if (isset($_POST['edit'])) {
-        $item_id = $_POST['item_id'];
-        $item_name = $_POST['item_name'];
-        $retail_id = $_POST['retail_id'];
-        $weight = $_POST['weight'];
-        $dimension = $_POST['dimension'];
-        $destination = $_POST['destination'];
-        $delivered_at = $_POST['delivered_at'];
-        $insurance_amount = $_POST['insurance_amount'];
+    </div>
+    </div>
+<?php
 
-        $query = mysqli_query($conn, "UPDATE `shipped_items` SET 
-                    `retail_center_id`=$retail_id,`name`='$item_name',`weight`=$weight,`dimension`='$dimension',`final_delivery_date`='$delivered_at',
-                    `destination`='$destination',`insurance_amount`=$insurance_amount WHERE `id`=$item_id
-                    ");
-        if ($query) {
-
-            echo "<script>alert('message send succesfully')</script>";
-            // header("location://javascript:history.go(-1)()");
-            // header("Location: {$_SERVER["HTTP_REFERER"]}");
-            // header("location:javascript://history.go(-1)");
-        }
-    }
 }
-
 ?>
 
 
@@ -574,4 +592,5 @@ if ($_GET['sub'] == 'track') {
 
 
 
-    </div>
+
+</div>

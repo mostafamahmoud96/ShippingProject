@@ -25,8 +25,8 @@ $count = mysqli_num_rows($query);
     {
        // echo  "faild";
       
-       echo "<script type='text/javascript'>alert('User Name Or Password Invalid!')</script>";
-    }
+       echo '<div class="alert alert-danger"><i class="bi bi-check-circle"></i> Wrong login or password.</div>';
+      }
  }
  else{
     echo "<script language='javascript' type='text/javascript'> Location.href='index.php'</script>";

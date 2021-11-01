@@ -16,12 +16,10 @@ if (isset($_POST['login']) && isset($_POST['password']) && $_POST['login'] != ''
             header('Location: /ShippingProject/index.php'); //redirect to main
         }
     } else {
-        echo "<script>alert('Wrong login or password');</script>";
-        echo "<noscript>Wrong login or password</noscript>";
+        echo '<div class="alert alert-danger"><i class="bi bi-check-circle"></i> Wrong login or password.</div>';
+        // echo "<script>alert('Wrong login or password');</script>";
     }
-} else {
-    echo "<script>alert('UserName and password field required');</script>";
-}
+} 
 ?>
 
 

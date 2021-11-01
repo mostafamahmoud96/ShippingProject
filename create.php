@@ -9,7 +9,7 @@ if ($_GET['sub'] == 'item') {
     $retail_sql = "SELECT * FROM `retail_center`";
     $retail_result = mysqli_query($conn, $retail_sql);
 ?>
-    <?php
+<?php
     if (isset($_POST['add'])) {
         $item_id = $_POST['item_id'];
         $item_name = $_POST['item_name'];
@@ -71,168 +71,176 @@ if ($_GET['sub'] == 'item') {
             // echo $sql ;
         }
         if ($result) {
-
-            echo "<script>alert('message send succesfully')</script>";
-            header("location:index.php?sub=items&title=list");
-            // header("location://javascript:history.go(-1)()");
-            // header("Location: {$_SERVER["HTTP_REFERER"]}");
+            
+            header("Location:index.php?sub=items&title=list");
         }
     }
 
     ?>
-    <div class="card">
-        <div class="card-header">
-            <h4 class="card-title">Add Shipped Item</h4>
-        </div>
-        <div class="card-content">
-            <div class="card-body">
-                <form class="form form-horizontal" method="post" action="<?php //header("Location: index.php?title=list&sub=items"); 
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Add Shipped Item</h4>
+    </div>
+    <div class="card-content">
+        <div class="card-body">
+            <form class="form form-horizontal" method="post" action="<?php //header("Location: index.php?title=list&sub=items"); 
                                                                             ?>">
-                    <div class="form-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <label> Item Name</label>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-group has-icon-left">
-                                    <div class="position-relative">
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label> Item Name</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group has-icon-left">
+                                <div class="position-relative">
 
-                                        <input type="text" class="form-control" name="item_name" value="<?php echo $item['name']; ?>">
-                                        <p class="err_msg">
-                                            <?php
+                                    <input type="text" class="form-control" name="item_name"
+                                        value="<?php echo $item['name']; ?>">
+                                    <p class="err_msg">
+                                        <?php
                                             // echo (!$err_name == 1);
                                             if ($err_name != 1) {
                                                 echo $err_name;
                                             } ?>
-                                        </p>
+                                    </p>
 
-                                    </div>
                                 </div>
                             </div>
-                            <!-- <div class="col-md-4"> -->
+                        </div>
+                        <!-- <div class="col-md-4"> -->
 
 
-                            <div class="col-md-4">
-                                <label>Retail Center</label>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-group has-icon-left">
-                                    <div class="position-relative">
-                                        <select class="form-select control" id="RetailSelect" name="retail_id">
-                                            <?php
+                        <div class="col-md-4">
+                            <label>Retail Center</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group has-icon-left">
+                                <div class="position-relative">
+                                    <select class="form-select control" id="RetailSelect" name="retail_id">
+                                        <?php
                                             while ($one_retail = mysqli_fetch_array($retail_result)) {
                                             ?>
-                                                <option value="<?php echo $one_retail['id']; ?>" <?php if ($one_retail['id'] == $retail['id']) { ?>selected="selected" <?php } ?>><?php echo $one_retail['name'] ?></option>
-                                                < <?php
+                                        <option value="<?php echo $one_retail['id']; ?>"
+                                            <?php if ($one_retail['id'] == $retail['id']) { ?>selected="selected"
+                                            <?php } ?>><?php echo $one_retail['name'] ?></option>
+                                        < <?php
                                                 }
                                                     ?> </select>
-                                                    <?php
+                                            <?php
                                                     // echo (!$err_name == 1);
                                                     if ($err_retail != 1) {
                                                         echo $err_retail;
                                                     } ?>
 
-                                    </div>
                                 </div>
                             </div>
+                        </div>
 
 
-                            <div class="col-md-4">
-                                <label>Weight:</label>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-group has-icon-left">
-                                    <div class="position-relative">
-                                        <input type="text" class="form-control" name="weight" value="<?php echo $item['weight'] ?>">
-                                        <?php
+                        <div class="col-md-4">
+                            <label>Weight:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group has-icon-left">
+                                <div class="position-relative">
+                                    <input type="text" class="form-control" name="weight"
+                                        value="<?php echo $item['weight'] ?>">
+                                    <?php
                                         // echo (!$err_name == 1);
                                         if ($err_weight != 1) {
                                             echo $err_weight;
                                         } ?>
 
-                                    </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="col-md-4">
-                                <label>Dimension:</label>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-group has-icon-left">
-                                    <div class="position-relative">
-                                        <input type="text" class="form-control" name="dimension" value="<?php echo $item['dimension'] ?>">
-                                        <?php
+                        <div class="col-md-4">
+                            <label>Dimension:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group has-icon-left">
+                                <div class="position-relative">
+                                    <input type="text" class="form-control" name="dimension"
+                                        value="<?php echo $item['dimension'] ?>">
+                                    <?php
                                         // echo (!$err_name == 1);
                                         if ($err_dimension != 1) {
                                             echo $err_dimension;
                                         } ?>
 
-                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <label>Destination:</label>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-group has-icon-left">
-                                    <div class="position-relative">
-                                        <input type="text" class="form-control" name="destination" value="<?php echo $item['destination'] ?>">
-                                        <?php
+                        </div>
+                        <div class="col-md-4">
+                            <label>Destination:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group has-icon-left">
+                                <div class="position-relative">
+                                    <input type="text" class="form-control" name="destination"
+                                        value="<?php echo $item['destination'] ?>">
+                                    <?php
                                         // echo (!$err_name == 1);
                                         if ($err_destination != 1) {
                                             echo $err_destination;
                                         } ?>
 
 
-                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <label>Delivered At:</label>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-group has-icon-left">
-                                    <div class="position-relative">
-                                        <input type="date" class="form-control" name="delivered_at" value="<?php echo $item['final_delivery_date'] ?>">
-                                        <?php
+                        </div>
+                        <div class="col-md-4">
+                            <label>Delivered At:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group has-icon-left">
+                                <div class="position-relative">
+                                    <input type="date" class="form-control" name="delivered_at"
+                                        value="<?php echo $item['final_delivery_date'] ?>">
+                                    <?php
                                         // echo (!$err_name == 1);
                                         if ($err_delivered != 1) {
                                             echo $err_delivered;
                                         } ?>
 
-                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <label>Insurance Amount:</label>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-group has-icon-left">
-                                    <div class="position-relative">
-                                        <input type="text" class="form-control" name="insurance_amount" value="<?php echo $item['insurance_amount'] ?>">
-                                        <?php
+                        </div>
+                        <div class="col-md-4">
+                            <label>Insurance Amount:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group has-icon-left">
+                                <div class="position-relative">
+                                    <input type="text" class="form-control" name="insurance_amount"
+                                        value="<?php echo $item['insurance_amount'] ?>">
+                                    <?php
                                         // echo (!$err_name == 1);
                                         if ($err_amount != 1) {
                                             echo $err_amount;
                                         } ?>
 
-                                    </div>
                                 </div>
                             </div>
-
-                            <div class="col-12 d-flex justify-content-end">
-                                <button type="submit" class="btn btn-primary me-1 mb-1" name="add">Add Item</button>
-
-                            </div>
                         </div>
-                </form>
-            </div>
+
+                        <div class="col-12 d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary me-1 mb-1" name="add">Add Item</button>
+
+                        </div>
+                    </div>
+            </form>
         </div>
     </div>
+</div>
 
 <?php
 }
 ?>
+
+<!-- ___________________________________________________________________________________________________________________________ -->
+<!-- Create New Transportation Event -->
 <?php
 if ($_GET['sub'] == 'trans_event') {
     if (isset($_POST['add'])) {
@@ -261,72 +269,69 @@ if ($_GET['sub'] == 'trans_event') {
         }
         if ($result) {
 
-            echo "<script>alert('message send succesfully')</script>";
             header("location:index.php?sub=items&title=list");
-            // header("location://javascript:history.go(-1)()");
-            // header("Location: {$_SERVER["HTTP_REFERER"]}");
         }
     }
 
 ?>
-    <div class="card">
-        <div class="card-header">
-            <h4 class="card-title">Add Transportation Event</h4>
-        </div>
-        <div class="card-content">
-            <div class="card-body">
-                <form class="form form-horizontal" method="post" action="">
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Add Transportation Event</h4>
+    </div>
+    <div class="card-content">
+        <div class="card-body">
+            <form class="form form-horizontal" method="post" action="">
 
-                    <div class="col-md-4">
-                        <label>Type</label>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="form-group has-icon-left">
-                            <div class="position-relative">
-                                <input type="text" class="form-control" name="trans_type" value="">
-                                <p class="err_msg">
-                                    <?php
+                <div class="col-md-4">
+                    <label>Type</label>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group has-icon-left">
+                        <div class="position-relative">
+                            <input type="text" class="form-control" name="trans_type" value="">
+                            <p class="err_msg">
+                                <?php
                                     // echo (!$err_name == 1);
                                     if ($err_type != 1) {
                                         echo $err_type;
                                     } ?>
-                                </p>
-                            </div>
+                            </p>
                         </div>
                     </div>
+                </div>
 
 
-                    <div class="col-md-4">
-                        <label>Route:</label>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="form-group has-icon-left">
-                            <div class="position-relative">
-                                <input type="text" class="form-control" name="route" value="">
-                                <p class="err_msg">
-                                    <?php
-                                    // echo (!$err_name == 1);
+                <div class="col-md-4">
+                    <label>Route:</label>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group has-icon-left">
+                        <div class="position-relative">
+                            <input type="text" class="form-control" name="route" value="">
+                            <p class="err_msg">
+                                <?php
                                     if ($err_route != 1) {
                                         echo $err_route;
                                     } ?>
-                                </p>
-                            </div>
+                            </p>
                         </div>
                     </div>
+                </div>
 
-                    <div class="col-12 d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary me-1 mb-1" name="add">Add</button>
+                <div class="col-12 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary me-1 mb-1" name="add">Add</button>
 
-                    </div>
-            </div>
-            </form>
+                </div>
         </div>
+        </form>
     </div>
-    </div>
+</div>
+</div>
 <?php
 }
 ?>
-
+<!-- ___________________________________________________________________________________________________________________________ -->
+<!-- Create New Retail Center -->
 <?php
 if ($_GET['sub'] == 'retail') {
     $retail_sql = "SELECT * FROM `retail_center`";
@@ -364,95 +369,96 @@ if ($_GET['sub'] == 'retail') {
         }
         if ($result) {
 
-            echo "<script>alert('message send succesfully')</script>";
             header("location:index.php?sub=items&title=list");
-            // header("location://javascript:history.go(-1)()");
-            // header("Location: {$_SERVER["HTTP_REFERER"]}");
+          
         }
     }
 ?>
-    <div class="card">
-        <div class="card-header">
-            <h4 class="card-title">Add Retail Center </h4>
-        </div>
-        <div class="card-content">
-            <div class="card-body">
-                <form class="form form-horizontal" method="post" action="">
-                    <div class="col-md-4">
-                        <label> Retail Center Name</label>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="form-group has-icon-left">
-                            <div class="position-relative">
-                                <input type="text" class="form-control" name="retail_name" value="">
-                                <p class="err_msg">
-                                    <?php
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Add Retail Center </h4>
+    </div>
+    <div class="card-content">
+        <div class="card-body">
+            <form class="form form-horizontal" method="post" action="">
+                <div class="col-md-4">
+                    <label> Retail Center Name</label>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group has-icon-left">
+                        <div class="position-relative">
+                            <input type="text" class="form-control" name="retail_name" value="">
+                            <p class="err_msg">
+                                <?php
                                     // echo (!$err_name == 1);
                                     if ($retail_name != 1) {
                                         echo $retail_name;
                                     } ?>
-                                </p>
-                            </div>
+                            </p>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <label>Type</label>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="form-group has-icon-left">
-                            <div class="position-relative">
-                                <select class="form-select control" id="RetailSelect" name="retail_type">
-                                    <option value="" disabled selected>Choose One</option>
-                                    <?php
+                </div>
+                <div class="col-md-4">
+                    <label>Type</label>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group has-icon-left">
+                        <div class="position-relative">
+                            <select class="form-select control" id="RetailSelect" name="retail_type">
+                                <option value="" disabled selected>Choose One</option>
+                                <?php
                                     while ($one_retail = mysqli_fetch_array($retail_result)) {
                                     ?>
-                                        <option value="<?php echo $one_retail['type']; ?>"><?php echo $one_retail['type'] ?></option>
-                                        < <?php
+                                <option value="<?php echo $one_retail['type']; ?>"><?php echo $one_retail['type'] ?>
+                                </option>
+                                < <?php
                                         }
                                             ?> </select>
-                                            <p class="err_msg">
-                                                <?php
+                                    <p class="err_msg">
+                                        <?php
                                                 // echo (!$err_name == 1);
                                                 if ($err_type != 1) {
                                                     echo $err_type;
                                                 } ?>
-                                            </p>
-                            </div>
+                                    </p>
                         </div>
                     </div>
+                </div>
 
 
-                    <div class="col-md-4">
-                        <label>Address:</label>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="form-group has-icon-left">
-                            <div class="position-relative">
-                                <input type="text" class="form-control" name="retail_address" value="">
-                                <p class="err_msg">
-                                    <?php
+                <div class="col-md-4">
+                    <label>Address:</label>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group has-icon-left">
+                        <div class="position-relative">
+                            <input type="text" class="form-control" name="retail_address" value="">
+                            <p class="err_msg">
+                                <?php
                                     // echo (!$err_name == 1);
                                     if ($err_address != 1) {
                                         echo $err_address;
                                     } ?>
-                                </p>
-                            </div>
+                            </p>
                         </div>
                     </div>
+                </div>
 
-                    <div class="col-12 d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary me-1 mb-1" name="add">Add</button>
+                <div class="col-12 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary me-1 mb-1" name="add">Add</button>
 
-                    </div>
-            </div>
-            </form>
+                </div>
         </div>
+        </form>
     </div>
-    </div>
+</div>
+</div>
 <?php
 
 }
 ?>
+<!-- ___________________________________________________________________________________________________________________________ -->
+<!-- Create New track shipping order Item -->
 <?php
 if ($_GET['sub'] == 'track') {
     if (isset($_POST['add'])) {
@@ -497,100 +503,102 @@ if ($_GET['sub'] == 'track') {
         $id = $id_generate['id'] + 1;
     }
 ?>
-    <div class="card">
-        <div class="card-header">
-            <h4 class="card-title">Add Track order </h4>
-        </div>
-        <div class="card-content">
-            <div class="card-body">
-                <form class="form form-horizontal" method="post" action="">
-                    <div class="col-md-4">
-                        <label> Shipping Order Number</label>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group has-icon-left">
-                            <div class="position-relative">
-                                <input type="text" class="form-control" name="id" value="<?php echo $id ?>" readonly>
-                            </div>
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Add Track order </h4>
+    </div>
+    <div class="card-content">
+        <div class="card-body">
+            <form class="form form-horizontal" method="post" action="">
+                <div class="col-md-4">
+                    <label> Shipping Order Number</label>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group has-icon-left">
+                        <div class="position-relative">
+                            <input type="text" class="form-control" name="id" value="<?php echo $id ?>" readonly>
                         </div>
                     </div>
-                    <div class="col-12 d-flex justify-content-end">
-                        <button type="button" class="btn btn-success me-1 mb-1" id="addBtn" name="add">Add Shipping Item</button>
+                </div>
+                <div class="col-12 d-flex justify-content-end">
+                    <button type="button" class="btn btn-success me-1 mb-1" id="addBtn" name="add">Add Shipping
+                        Item</button>
 
-                    </div>
+                </div>
 
-                    <div class='row' id="row">
-                        <div class="col-md-6">
-                            <label>Item</label>
+                <div class='row' id="row">
+                    <div class="col-md-6">
+                        <label>Item</label>
 
-                            <div class="form-group has-icon-left">
-                                <div class="position-relative">
-                                    <select class="form-select control" id="RetailSelect" name="item[0]">
-                                        <option value="" disabled selected>Choose One</option>
-                                        <?php
+                        <div class="form-group has-icon-left">
+                            <div class="position-relative">
+                                <select class="form-select control" id="RetailSelect" name="item[0]">
+                                    <option value="" disabled selected>Choose One</option>
+                                    <?php
                                         foreach ($item_result as $item) {
                                         ?>
-                                            <option value="<?php echo $item['id']; ?>"><?php echo $item['name'] ?></option>
-                                            < <?php
+                                    <option value="<?php echo $item['id']; ?>"><?php echo $item['name'] ?></option>
+                                    < <?php
                                             }
                                                 ?> </select>
 
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label>Transportaion / Route</label>
-
-                            <div class="form-group has-icon-left">
-                                <div class="position-relative">
-                                    <select class="form-select control" id="RetailSelect" name="trans[0]">
-                                        <option value="" disabled selected>Choose One</option>
-                                        <?php
-                                        foreach ($trans_result as $trans) {
-
-                                        ?>
-                                            <option value="<?php echo $trans['id']; ?>"><?php echo $trans['type'] . "/" . $trans['delivery_route'] ?></option>
-                                        <?php
-                                            // var_dump($trans);
-                                        }
-                                        ?>
-                                    </select>
-
-                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <label>Transportaion / Route</label>
 
-            </div>
-            <hr>
-            <?php
+                        <div class="form-group has-icon-left">
+                            <div class="position-relative">
+                                <select class="form-select control" id="RetailSelect" name="trans[0]">
+                                    <option value="" disabled selected>Choose One</option>
+                                    <?php
+                                        foreach ($trans_result as $trans) {
+
+                                        ?>
+                                    <option value="<?php echo $trans['id']; ?>">
+                                        <?php echo $trans['type'] . "/" . $trans['delivery_route'] ?></option>
+                                    <?php
+                                            // var_dump($trans);
+                                        }
+                                        ?>
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+        <hr>
+        <?php
             //  }
             ?>
 
-            <div class="col-12 d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary me-1 mb-1" name="add">Create Shipping</button>
+        <div class="col-12 d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary me-1 mb-1" name="add">Create Shipping</button>
 
-            </div>
         </div>
-        </form>
     </div>
-    </div>
-    </div>
+    </form>
+</div>
+</div>
+</div>
 <?php
 
 }
 ?>
 <script>
-    $(document).ready(function() {
+$(document).ready(function() {
 
-        // Denotes total number of rows
-        var rowIdx = 1;
+    // Denotes total number of rows
+    var rowIdx = 1;
 
-        // jQuery button click event to add a row
-        $('#addBtn').on('click', function() {
+    // jQuery button click event to add a row
+    $('#addBtn').on('click', function() {
 
-            // Adding a row inside the tbody.
-            $('#row').append(`
+        // Adding a row inside the tbody.
+        $('#row').append(`
         <hr>
         <div class="col-md-6">
                             <label>Item</label>
@@ -600,7 +608,7 @@ if ($_GET['sub'] == 'track') {
                                     <select class="form-select control" id="RetailSelect" name="item[${rowIdx}]">
                                         <option value="" disabled selected>Choose One</option>
                                         <?php
-                                        foreach ($shipped_item as $item) {
+                                        foreach ($item_result as $item) {
                                         ?>
                                             <option value="<?php echo $item['id']; ?>"><?php echo $item['name'] ?></option>
                                             < <?php
@@ -618,7 +626,7 @@ if ($_GET['sub'] == 'track') {
                                     <select class="form-select control" id="RetailSelect" name="trans[${rowIdx}]">
                                         <option value="" disabled selected>Choose One</option>
                                         <?php
-                                        foreach ($trans_type as $trans) {
+                                        foreach ($trans_result as $trans) {
 
                                         ?>
                                             <option value="<?php echo $trans['id']; ?>"><?php echo $trans['type'] . "/" . $trans['delivery_route'] ?></option>
@@ -634,42 +642,42 @@ if ($_GET['sub'] == 'track') {
                     
                     
                     `)
-            rowIdx++;
-        });
-
-        // jQuery button click event to remove a row.
-        $('#tbody').on('click', '.remove', function() {
-
-            // Getting all the rows next to the row
-            // containing the clicked button
-            var child = $(this).closest('tr').nextAll();
-
-            // Iterating across all the rows 
-            // obtained to change the index
-            child.each(function() {
-
-                // Getting <tr> id.
-                var id = $(this).attr('id');
-
-                // Getting the <p> inside the .row-index class.
-                var idx = $(this).children('.row-index').children('p');
-
-                // Gets the row number from <tr> id.
-                var dig = parseInt(id.substring(1));
-
-                // Modifying row index.
-                idx.html(`Row ${dig - 1}`);
-
-                // Modifying row id.
-                $(this).attr('id', `R${dig - 1}`);
-            });
-
-            // Removing the current row.
-            $(this).closest('tr').remove();
-
-            // Decreasing total number of rows by 1.
-            rowIdx--;
-        });
+        rowIdx++;
     });
+
+    // jQuery button click event to remove a row.
+    $('#tbody').on('click', '.remove', function() {
+
+        // Getting all the rows next to the row
+        // containing the clicked button
+        var child = $(this).closest('tr').nextAll();
+
+        // Iterating across all the rows 
+        // obtained to change the index
+        child.each(function() {
+
+            // Getting <tr> id.
+            var id = $(this).attr('id');
+
+            // Getting the <p> inside the .row-index class.
+            var idx = $(this).children('.row-index').children('p');
+
+            // Gets the row number from <tr> id.
+            var dig = parseInt(id.substring(1));
+
+            // Modifying row index.
+            idx.html(`Row ${dig - 1}`);
+
+            // Modifying row id.
+            $(this).attr('id', `R${dig - 1}`);
+        });
+
+        // Removing the current row.
+        $(this).closest('tr').remove();
+
+        // Decreasing total number of rows by 1.
+        rowIdx--;
+    });
+});
 </script>
 </div>
