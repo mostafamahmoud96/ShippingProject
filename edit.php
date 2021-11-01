@@ -263,7 +263,7 @@ if ($_GET['sub'] == 'item') {
             // echo $query ;
         }
         if ($query) {
-            echo "<script>window.location.href='http://localhost/ShippingProject/?sub=items&title=list';</script>";
+                echo "<script>window.location.href='http://localhost/ShippingProject/?sub=items&title=list';</script>";
             // header("location://javascript:history.go(-1)()");
             // header("Location: {$_SERVER["HTTP_REFERER"]}");
         }

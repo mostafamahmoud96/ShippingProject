@@ -71,8 +71,11 @@ if ($_GET['sub'] == 'item') {
             // echo $sql ;
         }
         if ($result) {
-            
-            header("Location:index.php?sub=items&title=list");
+            echo "<script>window.location.href='http://localhost/ShippingProject/?sub=items&title=list';</script>";
+            // echo "<script>alert('message send succesfully')</script>";
+            // header("location:index.php?sub=items&title=list");
+            // header("location://javascript:history.go(-1)()");
+            // header("Location: {$_SERVER["HTTP_REFERER"]}");
         }
     }
 
@@ -269,7 +272,13 @@ if ($_GET['sub'] == 'trans_event') {
         }
         if ($result) {
 
-            header("location:index.php?sub=items&title=list");
+            echo "<script>window.location.href='http://localhost/ShippingProject/?sub=trans&title=list';</script>";
+
+
+            // echo "<script>alert('message send succesfully')</script>";
+            // header("location:index.php?sub=items&title=list");
+            // header("location://javascript:history.go(-1)()");
+            // header("Location: {$_SERVER["HTTP_REFERER"]}");
         }
     }
 
@@ -368,9 +377,8 @@ if ($_GET['sub'] == 'retail') {
             // echo $sql ;
         }
         if ($result) {
-
-            header("location:index.php?sub=items&title=list");
-          
+            echo "<script>window.location.href='http://localhost/ShippingProject/?sub=retails&title=list';</script>";
+        
         }
     }
 ?>
