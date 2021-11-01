@@ -5,6 +5,11 @@ include("connection.php");
 <!-- shipped_items -->
 <?php
 if ($_GET['sub'] == 'items') {
+    if(isset($_SESSION['success'])){
+        echo '<div class="alert alert-light-success color-success"><i class="bi bi-check-circle"></i>'.$_SESSION['success'].'</div>';
+        unset($_SESSION['success']);
+    }
+
     $sql = "SELECT * FROM `shipped_items` ";
     $result = mysqli_query($conn, $sql);
 ?>
@@ -67,8 +72,9 @@ if ($_GET['sub'] == 'items') {
 <!-- transportation events -->
 <?php
 if ($_GET['sub'] == 'trans') {
-    if($_SESSION['success']){
-        echo $_SESSION['success'];
+    if(isset($_SESSION['success'])){
+        echo '<div class="alert alert-light-success color-success"><i class="bi bi-check-circle"></i>'.$_SESSION['success'].'</div>';
+        unset($_SESSION['success']);
     }
     $sql = "SELECT * FROM `transportation_events`";
     $result = mysqli_query($conn, $sql);
@@ -134,6 +140,11 @@ if ($_GET['sub'] == 'trans') {
 <!-- retails centers -->
 <?php
 if ($_GET['sub'] == 'retails') {
+    if(isset($_SESSION['success'])){
+        echo '<div class="alert alert-light-success color-success"><i class="bi bi-check-circle"></i>'.$_SESSION['success'].'</div>';
+        unset($_SESSION['success']);
+    }
+
     $sql = "SELECT * FROM `retail_center` ";
     $result = mysqli_query($conn, $sql);
 ?>
@@ -197,6 +208,11 @@ if ($_GET['sub'] == 'retails') {
 <!-- track shipping -->
 <?php
 if ($_GET['sub'] == 'track') {
+    if(isset($_SESSION['success'])){
+        echo '<div class="alert alert-light-success color-success"><i class="bi bi-check-circle"></i>'.$_SESSION['success'].'</div>';
+        unset($_SESSION['success']);
+    }
+
     $sql = "SELECT * FROM `item_transportation` ";
     $result = mysqli_query($conn, $sql);
     // $track_id = mysqli_query($conn, 'SELECT * FROM `item_transportations`');

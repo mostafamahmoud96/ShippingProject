@@ -72,10 +72,8 @@ if ($_GET['sub'] == 'item') {
         }
         if ($result) {
             echo "<script>window.location.href='http://localhost/ShippingProject/?sub=items&title=list';</script>";
-            // echo "<script>alert('message send succesfully')</script>";
-            // header("location:index.php?sub=items&title=list");
-            // header("location://javascript:history.go(-1)()");
-            // header("Location: {$_SERVER["HTTP_REFERER"]}");
+            session_start();
+            $_SESSION['success'] = "Added Successfully";
         }
     }
 
@@ -129,11 +127,14 @@ if ($_GET['sub'] == 'item') {
                                         < <?php
                                                 }
                                                     ?> </select>
+                                                                                <p class="err_msg">
+
                                             <?php
                                                     // echo (!$err_name == 1);
                                                     if ($err_retail != 1) {
                                                         echo $err_retail;
                                                     } ?>
+                                                                                </p>
 
                                 </div>
                             </div>
@@ -148,12 +149,14 @@ if ($_GET['sub'] == 'item') {
                                 <div class="position-relative">
                                     <input type="text" class="form-control" name="weight"
                                         value="<?php echo $item['weight'] ?>">
+                                        <p class="err_msg">
+
                                     <?php
                                         // echo (!$err_name == 1);
                                         if ($err_weight != 1) {
                                             echo $err_weight;
                                         } ?>
-
+                                        </p>
                                 </div>
                             </div>
                         </div>
@@ -166,12 +169,14 @@ if ($_GET['sub'] == 'item') {
                                 <div class="position-relative">
                                     <input type="text" class="form-control" name="dimension"
                                         value="<?php echo $item['dimension'] ?>">
+                                        <p class="err_msg">
+
                                     <?php
                                         // echo (!$err_name == 1);
                                         if ($err_dimension != 1) {
                                             echo $err_dimension;
                                         } ?>
-
+                                        </p>
                                 </div>
                             </div>
                         </div>
@@ -183,11 +188,14 @@ if ($_GET['sub'] == 'item') {
                                 <div class="position-relative">
                                     <input type="text" class="form-control" name="destination"
                                         value="<?php echo $item['destination'] ?>">
+                                        <p class="err_msg">
+
                                     <?php
                                         // echo (!$err_name == 1);
                                         if ($err_destination != 1) {
                                             echo $err_destination;
                                         } ?>
+                                        </p>
 
 
                                 </div>
@@ -201,12 +209,14 @@ if ($_GET['sub'] == 'item') {
                                 <div class="position-relative">
                                     <input type="date" class="form-control" name="delivered_at"
                                         value="<?php echo $item['final_delivery_date'] ?>">
+                                        
+                                        <p class="err_msg">
                                     <?php
                                         // echo (!$err_name == 1);
                                         if ($err_delivered != 1) {
                                             echo $err_delivered;
                                         } ?>
-
+                                        </p>
                                 </div>
                             </div>
                         </div>
@@ -218,12 +228,13 @@ if ($_GET['sub'] == 'item') {
                                 <div class="position-relative">
                                     <input type="text" class="form-control" name="insurance_amount"
                                         value="<?php echo $item['insurance_amount'] ?>">
+                                        <p class="err_msg">
                                     <?php
                                         // echo (!$err_name == 1);
                                         if ($err_amount != 1) {
                                             echo $err_amount;
                                         } ?>
-
+                                        </p>
                                 </div>
                             </div>
                         </div>
@@ -273,12 +284,8 @@ if ($_GET['sub'] == 'trans_event') {
         if ($result) {
 
             echo "<script>window.location.href='http://localhost/ShippingProject/?sub=trans&title=list';</script>";
-
-
-            // echo "<script>alert('message send succesfully')</script>";
-            // header("location:index.php?sub=items&title=list");
-            // header("location://javascript:history.go(-1)()");
-            // header("Location: {$_SERVER["HTTP_REFERER"]}");
+            session_start();
+            $_SESSION['success'] = "Added Successfully";
         }
     }
 
@@ -378,7 +385,8 @@ if ($_GET['sub'] == 'retail') {
         }
         if ($result) {
             echo "<script>window.location.href='http://localhost/ShippingProject/?sub=retails&title=list';</script>";
-        
+            session_start();
+            $_SESSION['success'] = "Added Successfully";
         }
     }
 ?>
@@ -494,7 +502,12 @@ if ($_GET['sub'] == 'track') {
                 $result = mysqli_query($conn, $sql);
                 // header("location:index.php?title=list&sub=track");   
             }
+            echo "<script>window.location.href='http://localhost/ShippingProject/?sub=retails&title=list';</script>";
+            session_start();
+            $_SESSION['success'] = "Added Successfully";
         }
+
+
     }
 
     $item_query = "SELECT * FROM  shipped_items";
@@ -549,6 +562,13 @@ if ($_GET['sub'] == 'track') {
                                     < <?php
                                             }
                                                 ?> </select>
+                                                    <p class="err_msg">
+                                <?php
+                                    // echo (!$err_name == 1);
+                                    if ($err_name != 1) {
+                                        echo $err_name;
+                                    } ?>
+                            </p>
 
                             </div>
                         </div>
@@ -571,7 +591,13 @@ if ($_GET['sub'] == 'track') {
                                         }
                                         ?>
                                 </select>
-
+                                <p class="err_msg">
+                                <?php
+                                    // echo (!$err_name == 1);
+                                    if ($err_trans != 1) {
+                                        echo $err_trans;
+                                    } ?>
+                            </p>
                             </div>
                         </div>
                     </div>
@@ -622,6 +648,13 @@ $(document).ready(function() {
                                             < <?php
                                             }
                                                 ?> </select>
+                                                      <p class="err_msg">
+                                <?php
+                                    // echo (!$err_name == 1);
+                                    if ($err_name != 1) {
+                                        echo $err_name;
+                                    } ?>
+                            </p>
 
                                 </div>
                             </div>
@@ -642,6 +675,13 @@ $(document).ready(function() {
                                             // var_dump($trans);
                                         }
                                             ?> </select>
+                                                  <p class="err_msg">
+                                <?php
+                                    // echo (!$err_name == 1);
+                                    if ($err_trans != 1) {
+                                        echo $err_trans;
+                                    } ?>
+                            </p>
 
                                 </div>
                             </div>
