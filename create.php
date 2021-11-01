@@ -84,8 +84,7 @@ if ($_GET['sub'] == 'item') {
     </div>
     <div class="card-content">
         <div class="card-body">
-            <form class="form form-horizontal" method="post" action="<?php //header("Location: index.php?title=list&sub=items"); 
-                                                                            ?>">
+            <form class="form form-horizontal" method="post" action="">
                 <div class="form-body">
                     <div class="row">
                         <div class="col-md-4">
@@ -99,7 +98,6 @@ if ($_GET['sub'] == 'item') {
                                         value="<?php echo $item['name']; ?>">
                                     <p class="err_msg">
                                         <?php
-                                            // echo (!$err_name == 1);
                                             if ($err_name != 1) {
                                                 echo $err_name;
                                             } ?>
@@ -108,9 +106,6 @@ if ($_GET['sub'] == 'item') {
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="col-md-4"> -->
-
-
                         <div class="col-md-4">
                             <label>Retail Center</label>
                         </div>
@@ -127,14 +122,13 @@ if ($_GET['sub'] == 'item') {
                                         < <?php
                                                 }
                                                     ?> </select>
-                                                                                <p class="err_msg">
+                                            <p class="err_msg">
 
-                                            <?php
-                                                    // echo (!$err_name == 1);
+                                                <?php
                                                     if ($err_retail != 1) {
                                                         echo $err_retail;
                                                     } ?>
-                                                                                </p>
+                                            </p>
 
                                 </div>
                             </div>
@@ -149,14 +143,13 @@ if ($_GET['sub'] == 'item') {
                                 <div class="position-relative">
                                     <input type="text" class="form-control" name="weight"
                                         value="<?php echo $item['weight'] ?>">
-                                        <p class="err_msg">
+                                    <p class="err_msg">
 
-                                    <?php
-                                        // echo (!$err_name == 1);
+                                        <?php
                                         if ($err_weight != 1) {
                                             echo $err_weight;
                                         } ?>
-                                        </p>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -169,14 +162,13 @@ if ($_GET['sub'] == 'item') {
                                 <div class="position-relative">
                                     <input type="text" class="form-control" name="dimension"
                                         value="<?php echo $item['dimension'] ?>">
-                                        <p class="err_msg">
+                                    <p class="err_msg">
 
-                                    <?php
-                                        // echo (!$err_name == 1);
+                                        <?php
                                         if ($err_dimension != 1) {
                                             echo $err_dimension;
                                         } ?>
-                                        </p>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -188,14 +180,13 @@ if ($_GET['sub'] == 'item') {
                                 <div class="position-relative">
                                     <input type="text" class="form-control" name="destination"
                                         value="<?php echo $item['destination'] ?>">
-                                        <p class="err_msg">
+                                    <p class="err_msg">
 
-                                    <?php
-                                        // echo (!$err_name == 1);
+                                        <?php
                                         if ($err_destination != 1) {
                                             echo $err_destination;
                                         } ?>
-                                        </p>
+                                    </p>
 
 
                                 </div>
@@ -209,14 +200,13 @@ if ($_GET['sub'] == 'item') {
                                 <div class="position-relative">
                                     <input type="date" class="form-control" name="delivered_at"
                                         value="<?php echo $item['final_delivery_date'] ?>">
-                                        
-                                        <p class="err_msg">
-                                    <?php
-                                        // echo (!$err_name == 1);
+
+                                    <p class="err_msg">
+                                        <?php
                                         if ($err_delivered != 1) {
                                             echo $err_delivered;
                                         } ?>
-                                        </p>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -228,13 +218,12 @@ if ($_GET['sub'] == 'item') {
                                 <div class="position-relative">
                                     <input type="text" class="form-control" name="insurance_amount"
                                         value="<?php echo $item['insurance_amount'] ?>">
-                                        <p class="err_msg">
-                                    <?php
-                                        // echo (!$err_name == 1);
+                                    <p class="err_msg">
+                                        <?php
                                         if ($err_amount != 1) {
                                             echo $err_amount;
                                         } ?>
-                                        </p>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -307,7 +296,6 @@ if ($_GET['sub'] == 'trans_event') {
                             <input type="text" class="form-control" name="trans_type" value="">
                             <p class="err_msg">
                                 <?php
-                                    // echo (!$err_name == 1);
                                     if ($err_type != 1) {
                                         echo $err_type;
                                     } ?>
@@ -406,7 +394,6 @@ if ($_GET['sub'] == 'retail') {
                             <input type="text" class="form-control" name="retail_name" value="">
                             <p class="err_msg">
                                 <?php
-                                    // echo (!$err_name == 1);
                                     if ($retail_name != 1) {
                                         echo $retail_name;
                                     } ?>
@@ -432,7 +419,6 @@ if ($_GET['sub'] == 'retail') {
                                             ?> </select>
                                     <p class="err_msg">
                                         <?php
-                                                // echo (!$err_name == 1);
                                                 if ($err_type != 1) {
                                                     echo $err_type;
                                                 } ?>
@@ -451,7 +437,6 @@ if ($_GET['sub'] == 'retail') {
                             <input type="text" class="form-control" name="retail_address" value="">
                             <p class="err_msg">
                                 <?php
-                                    // echo (!$err_name == 1);
                                     if ($err_address != 1) {
                                         echo $err_address;
                                     } ?>
@@ -500,7 +485,6 @@ if ($_GET['sub'] == 'track') {
                 $sql = "INSERT INTO `item_transportation`(`id`,`item_id`, `transportation_id`) VALUES ";
                 $sql .= "($id,$item[$i],$trans[$i])";
                 $result = mysqli_query($conn, $sql);
-                // header("location:index.php?title=list&sub=track");   
             }
             echo "<script>window.location.href='http://localhost/ShippingProject/?sub=retails&title=list';</script>";
             session_start();
@@ -562,13 +546,13 @@ if ($_GET['sub'] == 'track') {
                                     < <?php
                                             }
                                                 ?> </select>
-                                                    <p class="err_msg">
-                                <?php
+                                        <p class="err_msg">
+                                            <?php
                                     // echo (!$err_name == 1);
                                     if ($err_name != 1) {
                                         echo $err_name;
                                     } ?>
-                            </p>
+                                        </p>
 
                             </div>
                         </div>
@@ -587,17 +571,15 @@ if ($_GET['sub'] == 'track') {
                                     <option value="<?php echo $trans['id']; ?>">
                                         <?php echo $trans['type'] . "/" . $trans['delivery_route'] ?></option>
                                     <?php
-                                            // var_dump($trans);
                                         }
                                         ?>
                                 </select>
                                 <p class="err_msg">
-                                <?php
-                                    // echo (!$err_name == 1);
+                                    <?php
                                     if ($err_trans != 1) {
                                         echo $err_trans;
                                     } ?>
-                            </p>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -650,7 +632,6 @@ $(document).ready(function() {
                                                 ?> </select>
                                                       <p class="err_msg">
                                 <?php
-                                    // echo (!$err_name == 1);
                                     if ($err_name != 1) {
                                         echo $err_name;
                                     } ?>
@@ -672,12 +653,10 @@ $(document).ready(function() {
                                         ?>
                                             <option value="<?php echo $trans['id']; ?>"><?php echo $trans['type'] . "/" . $trans['delivery_route'] ?></option>
                                             <?php
-                                            // var_dump($trans);
                                         }
                                             ?> </select>
                                                   <p class="err_msg">
                                 <?php
-                                    // echo (!$err_name == 1);
                                     if ($err_trans != 1) {
                                         echo $err_trans;
                                     } ?>

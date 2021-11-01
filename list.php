@@ -244,6 +244,7 @@ if ($_GET['sub'] == 'track') {
                         // to get shipping item data
                         $query = "SELECT * FROM `shipped_items` ";
                         $query .= "where `id` = $track[item_id]";
+                        // echo $query ;
                         $query_result = mysqli_query($conn, $query);
                         $query_fetch = mysqli_fetch_array($query_result);
 

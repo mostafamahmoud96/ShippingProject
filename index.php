@@ -5,12 +5,12 @@ session_start();
 require_once "connection.php";
 
 if (!isset($_COOKIE['username']) || !isset($_COOKIE['password'])) {
-    header('Location: /shippingProject/login.php');
+    header('Location: /ShippingProject/login.php');
     exit;
 } elseif (!isset($_SESSION['login'])) {
-    header('Location: /shippingProject/login.php');
+    header('Location: /ShippingProject/login.php');
     exit;
-}
+}   
 
 ?>
 <!DOCTYPE html>
@@ -101,18 +101,9 @@ if (!isset($_COOKIE['username']) || !isset($_COOKIE['password'])) {
             </div>
         </div>
         <footer>
-            <!-- <div class="footer clearfix mb-0  text-muted" style="margin-bottom: 0%;">
-                    <div class="float-start">
-                        <p>2021 &copy; Mazer</p>
-                    </div>
-                    <div class="float-end">
-                        <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                                href="http://ahmadsaugi.com">A. Saugi</a></p>
-                    </div>
-                </div> -->
+
         </footer>
     </div>
-    <!-- /var/www/html/quizSystem/dashboardTemplate/dist/assets -->
     </div>
     <script src="dashboardTemplate/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="dashboardTemplate/dist/assets/js/bootstrap.bundle.min.js"></script>
