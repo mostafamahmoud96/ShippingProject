@@ -51,7 +51,7 @@ if (isset($_POST['login']) && isset($_POST['password']) && $_POST['login'] != ''
 
                     <h1 class="auth-title mb-5">Log in.</h1>
                     <?php if(isset($_SESSION['error'])){ echo $_SESSION['error']; }?>
-                    <form action="login.php" method="POST">
+                    <form action="login.php" method="POST" id="form">
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="text" class="form-control form-control-xl" placeholder="example@gmail.com"
                                 name="login">

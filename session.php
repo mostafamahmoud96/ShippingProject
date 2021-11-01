@@ -41,3 +41,4 @@ $count = mysqli_num_rows($query);
     echo "<script language='javascript' type='text/javascript'> Location.href='index.php'</script>";
 }
 ?>
+
