@@ -5,3 +5,8 @@ session_destroy();
 header('Location:/shippingProject/login.php');
 exit();
  ?>
+ <script>
+        $("#form").submit(function(e) {
+            e.preventDefault();
+        });
+    </script>

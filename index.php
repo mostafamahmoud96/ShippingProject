@@ -115,7 +115,10 @@ if (!isset($_COOKIE['username']) || !isset($_COOKIE['password'])  ) {
     <script src="dashboardTemplate/dist/assets/js/pages/dashboard.js"></script>
 
     <script src="dashboardTemplate/dist/assets/js/main.js"></script>
+    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
 
+    <script src="assets/js/main.js"></script>
 </body>
 
 </html>
