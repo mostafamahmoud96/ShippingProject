@@ -5,8 +5,14 @@ session_start();
     <div class="col-12">
         <?php
         if ($_GET['sub'] == 'item') {
-            $item = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `shipped_items` WHERE `id` = $_GET[id]"));
-            $retail = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `retail_center` WHERE `id`= $item[retail_center_id]"));
+            $item_query = "SELECT * FROM `shipped_items` WHERE";
+            $item_query .= " `id` = $_GET[id]";
+            $item_result = mysqli_query($conn, $item_query);
+            $item_fetch =  mysqli_fetch_array($item_result);
+            $retail_query = "SELECT * FROM `retail_center` WHERE";
+            $retail_query .= " `id`= $item_fetch[retail_center_id]";
+            $retail_result = mysqli_query($conn, $retail_query);
+            $retail_fetch = mysqli_fetch_array($retail_result);
         ?>
             <div class="card ">
                 <div class="card-header ">
@@ -15,60 +21,55 @@ session_start();
                     <div class="card-body">
                         <h5 class="card-title">
                             SHOW DATA
-                            <?php
-                            // echo $item['name'] ;
-                            ?>
                         </h5>
-
                     </div>
                 </div>
                 <ul class="list-group list-group-flush">
-
                     <li class="list-group-item">Item Name:
                         <span style="color: black;"> <?php
-                                                        echo $item['name']
+                                                        echo $item_fetch['name']
                                                         ?>
                         </span>
                     </li>
 
                     <li class="list-group-item">Retail Center:
                         <span style="color: black;"> <?php
-                                                        echo $retail['name']
+                                                        echo $retail_fetch['name']
                                                         ?>
                         </span>
                     </li>
                     <li class="list-group-item">Weight:
                         <span style="color: black;">
                             <?php
-                            echo $item['weight'] . "gram"
+                            echo $item_fetch['weight'] . "gram"
                             ?>
                         </span>
                     </li>
                     <li class="list-group-item">Dimension:
                         <span style="color: black;">
                             <?php
-                            echo $item['dimension']
+                            echo $item_fetch['dimension']
                             ?>
                         </span>
                     </li>
                     <li class="list-group-item">Destination:
                         <span style="color: black;">
                             <?php
-                            echo $item['destination']
+                            echo $item_fetch['destination']
                             ?>
                         </span>
                     </li>
                     <li class="list-group-item">Delivered At:
                         <span style="color: black;">
                             <?php
-                            echo $item['final_delivery_date']
+                            echo $item_fetch['final_delivery_date']
                             ?>
                         </span>
                     </li>
                     <li class="list-group-item">Insurance Amount:
                         <span style="color: black;">
                             <?php
-                            echo $item['insurance_amount']
+                            echo $item_fetch['insurance_amount']
                             ?>
                         </span>
                     </li>
@@ -76,10 +77,14 @@ session_start();
                 </ul>
 
             </div>
-      
+<!-- ___________________________________________________________________________________________________________________________ -->
+<!-- show retail-->
         <?php
         } elseif ($_GET['sub'] == 'retail') {
-            $retail = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `retail_center` WHERE `id` = $_GET[id]"));
+            $retail_query = "SELECT * FROM `retail_center` WHERE";
+            $retail_query .= " `id` = $_GET[id]";
+            $retail_result = mysqli_query($conn, $retail_query);
+            $retail_fetch = mysqli_fetch_array($retail_result);
 
         ?>
             <div class="card ">
@@ -89,9 +94,6 @@ session_start();
                     <div class="card-body">
                         <h5 class="card-title">
                             SHOW DATA
-                            <?php
-                            // echo $item['name'] ;
-                            ?>
                         </h5>
 
                     </div>
@@ -100,20 +102,20 @@ session_start();
 
                     <li class="list-group-item">Name:
                         <span style="color: black;"> <?php
-                                                        echo $retail['name']
+                                                        echo $retail_fetch['name']
                                                         ?>
                         </span>
                     </li>
 
                     <li class="list-group-item">Type:
                         <span style="color: black;"> <?php
-                                                        echo $retail['type']
+                                                        echo $retail_fetch['type']
                                                         ?>
                         </span>
                     </li>
                     <li class="list-group-item">Address:
                         <span style="color: black;"> <?php
-                                                        echo $retail['address']
+                                                        echo $retail_fetch['address']
                                                         ?>
                         </span>
                     </li>

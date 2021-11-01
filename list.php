@@ -215,7 +215,6 @@ if ($_GET['sub'] == 'track') {
 
     $sql = "SELECT * FROM `item_transportation` ";
     $result = mysqli_query($conn, $sql);
-    // $track_id = mysqli_query($conn, 'SELECT * FROM `item_transportations`');
 ?>
 <div class="card">
     <div class="card-header">
@@ -271,39 +270,11 @@ if ($_GET['sub'] == 'track') {
                     </td>
                     <!-- shipping status -->
                     <td>
-                        <div class="btn-group  mb-1">
-                            <?php //echo $track['status'] 
-                                    ?>
-                            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <?php echo $track['status'] ?>
-                            </button>
-                            <div class="dropdown-menu dropdown" style="margin: 0px;">
-                                <form class="px-2 py-2" method="post">
-                                    <div class="form-group">
-                                        <select class="form-select control" id="RetailSelect" name="status">
-                                            <option value="pending">Pending</option>
-                                            <option value="delivered">Delivered</option>
-                                            <option value="canceled">Canceled</option>
-                                        </select>
-                                    </div>
-                                    <button type="submit" name='submit_status' class="btn btn-secondary">Change
-                                        Status</button>
-                                </form>
-                                <?php
-                                        if (isset($_POST['submit_status'])) {
-                                            // echo $track['id'] . $;
-                                            $status = $_POST['status'];
-                                            $sql_status = "UPDATE `item_transportation`";
-                                            $sql_status .= " SET `status`='$status'";
-                                            $sql_status .= " WHERE `id`=$track[id]";
-                                            $sql_status .= " AND `item_id`=$track[item_id]";
-                                            $sql_status .= " AND `transportation_id`=$track[transportation_id]";
-                                            $result_status = mysqli_query($conn, $sql_status);
-                                        }
-                                        echo $sql_status;
-                                        ?>
-                            </div>
+                    <div class="avatar me-3">
+                        </div><?php echo $track['status']; ?>
+                       
+                          
+                   
                     </td>
                     <!-- CRUD Buttons  -->
                     <td colspan="3">
@@ -334,10 +305,6 @@ if ($_GET['sub'] == 'track') {
                     })
                 })
                 </script>
-
-
-
-
             </tbody>
         </table>
     </div>
