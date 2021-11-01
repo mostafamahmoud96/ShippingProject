@@ -1,29 +1,26 @@
 <?php
 //login.php
-session_start();
+    session_start();
 require("connection.php");
 // require("session.php");
 if (isset($_POST['login']) && isset($_POST['password']) && $_POST['login'] != '' && $_POST['password'] != '') //when form submitted
 {
 
-  $sel = mysqli_query($conn, "SELECT * FROM login WHERE email='".$_POST['login']."' && password = '".$_POST['password']."'");
-  $row = mysqli_fetch_assoc($sel);
-  if (mysqli_num_rows($sel) > 0) {
-    if ($_POST['login'] === $row['email'] && $_POST['password'] === $row['password'])
-    {
-      $_SESSION['login'] = $_POST['login']; //write login to server storage
-      setcookie ("username",$_POST["login"],time()+ 3600);
-      setcookie ("password",$_POST["password"],time()+ 3600);
-      header('Location: /shippingProject/index.php'); //redirect to main
+    $sel = mysqli_query($conn, "SELECT * FROM login WHERE email='" . $_POST['login'] . "' && password = '" . $_POST['password'] . "'");
+    $row = mysqli_fetch_assoc($sel);
+    if (mysqli_num_rows($sel) > 0) {
+        if ($_POST['login'] === $row['email'] && $_POST['password'] === $row['password']) {
+            $_SESSION['login'] = $_POST['login']; //write login to server storage
+            setcookie("username", $_POST["login"], time() + 3600);
+            setcookie("password", $_POST["password"], time() + 3600);
+            header('Location: /ShippingProject/index.php'); //redirect to main
+        }
+    } else {
+        echo "<script>alert('Wrong login or password');</script>";
+        echo "<noscript>Wrong login or password</noscript>";
     }
-  }
-  else
-  {
-    echo "<script>alert('Wrong login or password');</script>";
-    echo "<noscript>Wrong login or password</noscript>";
-  }
-}else{
-  echo "<script>alert('UserName and password field required');</script>";
+} else {
+    echo "<script>alert('UserName and password field required');</script>";
 }
 ?>
 
@@ -50,7 +47,9 @@ if (isset($_POST['login']) && isset($_POST['password']) && $_POST['login'] != ''
                 <div id="auth-left">
 
                     <h1 class="auth-title mb-5">Log in.</h1>
-                    <?php if(isset($_SESSION['error'])){ echo $_SESSION['error']; }?>
+                    <?php if (isset($_SESSION['error'])) {
+                        echo $_SESSION['error'];
+                    } ?>
                     <form action="login.php" method="POST">
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="text" class="form-control form-control-xl" placeholder="example@gmail.com"
@@ -80,7 +79,10 @@ if (isset($_POST['login']) && isset($_POST['password']) && $_POST['login'] != ''
 
     </div>
 </body>
-
-
+<script>
+if (window.history.replaceState) {
+    window.history.replaceState(null, null, window.location.href);
+}
+</script>
 
 </html>
